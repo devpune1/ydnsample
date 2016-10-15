@@ -271,8 +271,15 @@ stores: [{
 function loadDb() {
     
  
+  if(!window.indexedDB){
+      
+      alert("Your BrowserDo not support Indexed db");
+  }
   
- userEncryptionKey = getSessionPassword();
+  else{
+      
+      
+      userEncryptionKey = getSessionPassword();
  
   
 db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
@@ -295,6 +302,8 @@ else{
 
 }
 
+  }
+ 
 }
 
 
@@ -718,7 +727,7 @@ function resetStaticCount(){
 function deleteData( userName,userPassword,userWebsite,userHint,userDate,userKey) {
     
     var numberOfItems = null;
-   
+   var path = "";
     var propertyNameArr = ["name","password","website","hint","date"];
     var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
     
@@ -749,6 +758,10 @@ db.keys('user').done(function(keys) {
                    console.log(flag)
                    
                     if(flag){
+                        
+                        path = JSON.parse(userData[numberOfItems].name);
+                        
+                        remoteStorage.bicSoftware.removeUserData(path.ct);
                         
                        db.remove('user',keys[numberOfItems]);
                        reloadTable();
@@ -1185,7 +1198,7 @@ function getEditDData(previousData,editedData,userKey,tableName){
  
  var flag = null;
  var key = null;
-   
+  var path = ""; 
  var userDataProperty=["name","password","website","hint","date"];
    
     var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
@@ -1217,7 +1230,8 @@ console.log(editedData);
                  
                     if(flag){
                         
-                       
+                                path = JSON.parse(results[items].name);
+                                remoteStorage.bicSoftware.removeUserData(path.ct);
                                performEditing(editedData,key,tableName);
                               
                 
@@ -1441,6 +1455,14 @@ userData[rowCount] =  userDate;
      
        
              var obj = getUserDataObject(userData,propertyNameArr);
+             
+             
+                path = JSON.parse(obj.name);
+                        
+                        
+            
+              remoteStorage.bicSoftware.editUserData(path.ct,obj);
+                        
    
               db.put(tableName,obj,key).done(function(x) {
             
@@ -1448,6 +1470,7 @@ userData[rowCount] =  userDate;
               });
                   
              getRecord();
+             
           window.setTimeout(function(){ clearTextBoxValue() },1000);
          
       }
@@ -6410,13 +6433,13 @@ function enterUserRecords(){
                      
                   });
                   
-                  var id = JSON.parse(obj);
+                  var id = JSON.parse(obj.name);
+                
+                    console.log(obj)    
+                   remoteStorage.bicSoftware.addUserData("data",id.ct,obj);
                   
-                  console.log(id.name)
-               // remoteStorage.bicnet.addUserData("data",id.name.ct,obj);
                   
-                  
-                 //simpleData();
+                
           
           window.setTimeout(function(){ clearTextBoxValue() },1000);
       }

@@ -7,7 +7,7 @@
 
 
 
-RemoteStorage.defineModule('bicnet', function(privateClient) {
+RemoteStorage.defineModule('bicSoftware', function(privateClient) {
     
   privateClient.declareType('data', {
     
@@ -23,7 +23,7 @@ RemoteStorage.defineModule('bicnet', function(privateClient) {
   
       hint: { type: 'string' },
       
-     
+     date : {type : 'number'}
       
       
     },
@@ -51,7 +51,7 @@ RemoteStorage.defineModule('bicnet', function(privateClient) {
 
       addUserData: function(type,Id,userData) {
           
-        var Id = Id.toString();
+        var Id = Id.toString().replace(/\s|\//g, '-');
         
        
        
@@ -63,7 +63,7 @@ RemoteStorage.defineModule('bicnet', function(privateClient) {
       
       editUserData: function(userId,userData) {
         
-       var newId = newId.toString().replace(/\s|\//g, '-');
+       userId = userId.toString().replace(/\s|\//g, '-');
       
          return privateClient.storeObject('data',userId,userData);
          
@@ -75,7 +75,7 @@ RemoteStorage.defineModule('bicnet', function(privateClient) {
      
       
       
-          return  privateClient.remove(oldID);
+          return  privateClient.remove(userId);
       },
 
       getUserData: function() {

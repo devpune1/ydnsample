@@ -1617,6 +1617,8 @@ db.executeSql('Select * from userinfo').then(function(records){
       
       if(name.length){
       
+      
+      console.log(validateCredential(userName,name, userPassword));
           if(validateCredential(userName,name, userPassword)){
               
       
@@ -1673,8 +1675,9 @@ catch(err) {
 
 function validateCredential(userRecordName,userName,userKey){
     
-//  console.log(decryptedData(userName,userKey))
+ console.log(decryptedData(userName,userKey));
     userName = decryptedData(userName,userKey);
+    
     
     if(userName === userRecordName){
         
@@ -1683,8 +1686,6 @@ function validateCredential(userRecordName,userName,userKey){
         
     }
     else{
-        
-        
         
         return false;
     }
@@ -1838,3 +1839,18 @@ function addLoader(){
     
 }
 
+function checkSupport(){
+    
+    
+    if(!window.indexedDB){
+      
+      alert("Your BrowserDo not support Indexed db");
+  }
+  else{
+      
+        alert("support Indexed db");
+  }
+
+    
+    
+}
