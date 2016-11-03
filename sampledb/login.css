@@ -12,16 +12,16 @@ body, html{
 
 .loginpage{
     
-     background-color: white;
+     background-color: lightblue;
     border: 5px solid black;
     width:500px;
     height:360px;
     top: 200px;
    
-    margin-top:650px;
+    margin-top:100px;
     margin-left:400px; 
     margin-bottom:50px;
-    float: none ;margin: 0 auto;
+   
     font-size: 25px ;
 	   font-style: normal;
 	   font-variant: normal;
@@ -37,8 +37,8 @@ body, html{
      
    width:400px;
     height:300px;
-    background-color:lightblue;
-    margin-left:45px;
+    background-color: lightblue;
+    margin-left:500px;
     margin-right:50px;
     margin-top:30px;
     font-family: Arial;
@@ -46,29 +46,30 @@ body, html{
 	font-style: normal;
 	font-variant: normal;
 	font-weight:500;
+
     
 }
 
 
-.loginformdiv input[ type = text]{
+#InputName[type = text]{
      
-     width:300px;
+  width:300px;
     height:40px;
-    margin-top:50px;
-    margin-left:50px;
+    margin-top:80px;
+    margin-left:100px;
      font-size: 15px ;
  background-color:white;
-    
+   
 }
 
 
 
-.loginformdiv input[ type = password]{
+#InputPassword[ type = password]{
      
      width:300px;
     height:40px;
     margin-top:50px;
-    margin-left:50px;
+    margin-left:100px;
      font-size: 15px ;
  background-color:white;
     
@@ -80,7 +81,7 @@ body, html{
    width:100px;
     height:50px;
     margin-top:40px;
-   margin-left:70px;
+   margin-left:100px;
   background: url('images/login.png') 
 }
 
@@ -221,110 +222,7 @@ body, html{
      } 
 
 
-.ui-tooltip { border-width: 1px; 
-    
-    
-}
-    .ui-tooltip, .arrow:after {
-        background-color: black;
-        border: 1px solid #999;     
-       
 
-    }       
-    .ui-tooltip {
-        padding: 10px 12px;
-        color: red;
-        font: 8pt "Helvetica Neue", Sans-Serif;   
-        max-width: 150px;
-        border: 1px solid red;
-        position: absolute;
-        color: red;
-    }           
-    .arrow {       
-        height: 70px;
-        width: 10px;    
-        overflow: hidden;
-        position: absolute;
-        top: 0px;
-        margin-top: -5px;
-        left: -10px;
-    }   
-    .arrow:after {
-        content: "";
-        position: absolute;
-        color:red;
-        width: 25px;    height: 25px;
-        -webkit-transform-origin: 5px 25px;
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        tranform: rotate(45deg);
-    }
-    
-    
-    .empty{
-     
-      color: red;
-    }
-    
-    ui-tooltip1{
-     
-     color: red;
-     background-color: red;
-     
-    }
-    
-    #loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  
-   
-   border-right : 16px solid black;
-border-left : 16px solid black;
- border-top : 16px solid lightblue;
-border-bottom : 16px solid lightblue;
-  width: 40px;
-  height: 40px;
-  border-radius : 50%; 
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-  display :none;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 }
-  to { bottom:0px; opacity:1 }
-}
-
-@keyframes animatebottom {
-  from{ bottom:-100px; opacity:0 }
-  to{ bottom:0; opacity:1 }
-}
 #sample{
     
      width: 40px;
@@ -335,5 +233,41 @@ border-bottom : 16px solid lightblue;
     
     
 }
+
+
+.input-group-lg > .form-control{
+    
+ width: 450px;
+ height: 30px;
+}
+
+.InputEmail >.form-control {
+    
+    margin-left: 200px;
+    
+}
+
+*[role="form"] {
+    max-width: 0px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+   
+    border-radius: 0.3em;
+}
+
+#save{
+    
+     margin-left: 20px;
+     margin-top: 10px;
+    
+}
+#exit{
+    
+     margin-left: 20px;
+     margin-top: 10px;
+    
+}
+
 
 

@@ -280,7 +280,7 @@ function getTextBoxData(windowId){
        
     }
  
-  console.log(userData)
+  console.log(userData +""+items)
     
    
 
@@ -289,7 +289,7 @@ function getTextBoxData(windowId){
 }
 
 
-function registerUser(object){
+function register(object){
     
     
       var choice = "";
@@ -302,7 +302,7 @@ function registerUser(object){
       
       case 'login':
         
-           
+             
               var userData = [];
               
              userData = getTextBoxData("loginformdiv");
@@ -330,9 +330,13 @@ function registerUser(object){
           
          case 'signup':
             
-                    
+        $(function() {
+  $( "#userdate" ).datepicker({ dateFormat: 'dd-mm-yy' });
+
+
+});             
+clearInput('InputName');
                         
-                         signUp();
                          
                         
           break;
@@ -368,7 +372,7 @@ function isTextBoxEmpty(userEnteredData,textBoxID){
         
         
         
-        if(userEnteredData[items] === "" ) {
+        if(userEnteredData[items] == "" ) {
                 
            
                 count = count + 1; 
@@ -376,23 +380,12 @@ function isTextBoxEmpty(userEnteredData,textBoxID){
                  getTextBoxObj[items].style.borderColor = "red";
                  getTextBoxObj[items].style.color= "red";
                  getTextBoxObj[items].value = "Cannot Be Empty";
-                 getTextBoxObj[items].title = "Cannot Be Empty";
+              
                  getTextBoxObj[items].focus();
                
                
-                 
-       getTextBoxObj[items].onclick = function(){
-           
-           
-           
-           
- 
-       $('[data-toggle="tooltip"]').tooltip({
-        
-         placement: "right"
-    }); 
-       }    
-       
+               
+    
   
     
         }
@@ -426,19 +419,20 @@ else{
 
 function promptAboutInvalidData(textboxID,message,pos){
     
-    
+ 
      
     var getTextBoxObj = {};
     
-    getTextBoxObj = document.getElementsByName(textboxID);
+    getTextBoxObj = document.getElementById(textboxID);
     
-                    getTextBoxObj[pos].style.borderColor = "red";
+       getTextBoxObj.setCustomValidity(message);
+                    getTextBoxObj.style.borderColor = "red";
                     
-                    getTextBoxObj[pos].style.color = "black";
+                    getTextBoxObj.style.color = "black";
                    
-                   getTextBoxObj[pos].title =  message;
+                   getTextBoxObj.title =  message;
                    
-       getTextBoxObj[pos].onchange = function(){
+       getTextBoxObj.onchange = function(){
                   $( function() {
                       
       $( document ).tooltip({
@@ -480,24 +474,18 @@ function promptAboutValidData(textboxID,message,pos){
      
     var getTextBoxObj = {};
     
-    getTextBoxObj = document.getElementsByName(textboxID);
+    getTextBoxObj = document.getElementById(textboxID);
     
-                    getTextBoxObj[pos].style.borderColor = "lightblue";
+                    getTextBoxObj.style.borderColor = "lightblue";
+                      getTextBoxObj.setCustomValidity("");
                     
-                    getTextBoxObj[pos].style.color = "black";
-                     getTextBoxObj[pos].value = message ;
+                    getTextBoxObj.style.color = "black";
+                    // getTextBoxObj.value = message ;
             
      
     
-                  getTextBoxObj[pos].title = "" ;
-       getTextBoxObj[pos].onchange = function(){
-                  $( function() {
-      $( document ).tooltip({
-      
-           
-    });
-  } );
-  }
+               
+     
 }
 
 
@@ -572,10 +560,8 @@ function clearTextBoxInput(textID){
                     getTextBoxObj[items].style.borderColor = "";
                     getTextBoxObj[items].style.color = "black";
                     getTextBoxObj[items].value = "";
-                      getTextBoxObj[items].title = "Cannot Be Empty";
                       
-                        $(this).attr("title", "mycontent");
-                      
+                  
                       
         }
 
@@ -587,6 +573,38 @@ function clearTextBoxInput(textID){
     
 }
 
+function clearInput(textID){
+    
+    
+     var items = 0, textboxObject = "",count = 0, flag = false ;
+    
+    var getTextBoxObj = {};
+    
+    getTextBoxObj = document.getElementsByName(textID);
+    
+    
+    for(items = 0 ; items <getTextBoxObj.length ; items++){
+        
+        
+        
+        
+        if(getTextBoxObj[items].value){
+                
+                  
+                   
+                    getTextBoxObj[items].value = "";
+                     
+                  
+                      
+        }
+
+        
+    }
+    
+    
+    
+    
+}
 
 
 
@@ -612,106 +630,94 @@ function signUp(){
     var title = "Sign-up";
     var getEncryptedKey = '';
     var userData = [];
-    clearTextBoxInput('regform');
+   // clearTextBoxInput('regform');
     
-    userTextBoxId  = ['Name','UserID','Mobile','Email','Date','Password'];
+    userTextBoxId  = ['Name','UserID','Mobile','Email','Date'];
     textBoxImage = ['images/name.png','images/name.png','images/phone.png','images/email.png','images/calendar.png','images/password.png'];
 
-    
-    formTitle =  document.createElement('label');
-    formTitle.appendChild(document.createTextNode(titleName));
-    
-    
-    regPopupWindow = document.getElementById("registerform");
-    createDiv = document.createElement('div');
-    
-    createDiv.id = "subreg";
-    
-  
-      createDiv =  createLabel(createDiv,title,"170px","20px","30px");
-    
-    for( items = 0 ; items < userTextBoxId .length ; items++){
-    
-    createDiv =  createLabel(createDiv, userTextBoxId[items] + " :","10px","0px","15px");
-    
-        createImageButton(createDiv,textBoxImage[items]);
-       createDiv = createTextBox(createDiv,'regform',userTextBoxId[items]);
-        
-        
-    }
-    
-
-     registerButton = createButton( createDiv,"register");
-     
-    closeButton = createButton( createDiv,"close");
-  
-  
-  regPopupWindow.style.height = "750px";
-  registerButton.onclick = function(){
- 
    
       
           var userData = [];
         
          
-         if(isTextBoxEmpty('regform')){
+        /// if(isTextBoxEmpty('InputName')){
+        try{
+            
         
-         userData = getTextBoxData('regform');
-        
-          if(validateTextboxInput(userData,'regform')){
+         userData = getTextBoxData('InputName');
+        console.log( userData );
+          if(validateTextboxInput(userData,'InputName') ){
          
+         if(validateConfirmPassword(userData[5],userData[6])){
          
+                getUserEnteredPassword(userData[5]);
+        // console.log(getUserEnteredPassword(userData[5]));
          
-                 getUserEnteredPassword(userData[5]);
-         
-                
                 getEncryptedKey = getSessionKey();
                 
+              var key = generateHashKey(userData[1]+userData[5]);
+              
+              
                  userDataObject = getUserDataInObject(userTextBoxId,userData,getEncryptedKey);
       
-            
+                userDataObject["key"] = key;
                
                  storedUserRecords(userDataObject);
 
+             
+                  // regPopupWindow.style.display = "none";
               
-                   regPopupWindow.style.display = "none";
-                setTimeout(function (){ clearTextBoxInput('regform')},1000);   
                 
+                 $("#userdate").datepicker("disable");
+                $('#myModal').modal('hide');
+                
+                 
+         }
+         
+        
           }
           else{
-              
-             
-               setTimeout(function (){ promptAboutEmpty("loginformdiv")},500); 
+         
+               //setTimeout(function (){ promptAboutEmpty("loginformdiv")},500); 
                
               
           }
-         }
-         else{
+        }
+        catch(e)
+        {
+            
+            console.log( e.message);
+            
+        }
+          
+          
+       //  }
+      //   else{
              
-              setTimeout(function (){ promptAboutEmpty("loginformdiv")},500); 
+              //setTimeout(function (){ promptAboutEmpty("loginformdiv")},500); 
              // $(".regform").reload("login.html");
-         }
+       //  }
          
          
       
-  }
+ // }
   
-   closeButton.onclick = function(){
+   //closeButton.onclick = function(){
      
-   regPopupWindow.style.display = "none";
+   //regPopupWindow.style.display = "none";
       
      // $(".regform").load(location.href + ".regform");
       
-  }
+//  }
     
-  createDiv.appendChild( registerButton);
-  createDiv.appendChild( closeButton)
+ // createDiv.appendChild( registerButton);
+ //createDiv.appendChild( closeButton)
   
 
-    regPopupWindow.appendChild(createDiv);
+   //regPopupWindow.appendChild(createDiv);
     
     
-    regPopupWindow.style.display="block";
+   //regPopupWindow.style.display="block";
     
     
     
@@ -789,17 +795,10 @@ textBox.id  = placeHolder;
 textBox.style.width  = "200px";
 textBox.style.height  = "30px";
 textBox.style.marginTop  = "10px";
+
 textBox.placeholder = "Enter Your "+ placeHolder + " Here"; 
 
 textBox.onclick = function(){
-
-
-
-
-
-
-
-
 
 
 
@@ -825,7 +824,7 @@ textBox.onclick = function(){
       }
     });
   } );
-       
+   $(textBox.id).tooltip('toggle');
        
     if(textBox.id == 'Date'){
         
@@ -879,17 +878,21 @@ function setWindowSize(windowObject,widthSize,heightSize){
 
 function storedUserRecords(userDataObject){
   
-  var db  = []; 
+  var db = getUserInfoDatabaseObject();
   
   //db = getDatabaseObject();
-  db =  getUserInfoDatabaseObject(sessionStorage.getItem('databaseName'));
+  //db =  getUserInfoDatabaseObject(sessionStorage.getItem('databaseName'));
     
-    
+    try {
     db.put('userinfo',userDataObject).done(function(){
         
        alert("Record Entered ");
     });
-    
+    }
+    catch(e){
+        console.log( e.message +""+e.name);
+        
+    }
     
 }
 
@@ -905,7 +908,7 @@ function getUserDataInObject(userDataKey,userDataValue,encryptionKey){
         if(validateTexboxId(userDataKey[items])){
         
         
-            dataObject[userDataKey[items]] =  encryptData(userDataValue[items],encryptionKey) ;
+            dataObject[userDataKey[items]] =   encryptData(userDataValue[items],encryptionKey) ;
        
        
         }
@@ -1003,7 +1006,7 @@ function generateEncryptedKey(userEnteredKey ){
     
                 newUserKey =  newUserKey.join('');
        
-             newUserKey =  generateHashKey(newUserKey)
+             newUserKey =  generateHashKey(newUserKey);
           
                 newUserKey = newUserKey.toString();
           
@@ -1019,20 +1022,6 @@ function generateEncryptedKey(userEnteredKey ){
    
 
 
-function generateHashKey(userKey){
-    
-      var hashedKey=null;
-    
-    
-    
-     hashedKey = sjcl.hash.sha256.hash(userKey);
-    
-     
-    return hashedKey;
-    
-
-}
-
 
 
 
@@ -1044,9 +1033,8 @@ function getUserEnteredPassword(textId){
     var getPassword = '';
     
  
-    
-   getPassword =  generateEncryptedKey(textId);
-   
+   getPassword =   textId;
+  
   console.log( getPassword )
   setSessionKey(getKeyName(),getPassword);
    
@@ -1089,78 +1077,8 @@ function getSessionKey(){
 }
 
 
-function encryptData(userData,userKey){
-
-     
-
-        
-      var password = userKey; 
-      
-        var iter= 1000; //Strengthen by a factor 
-        var mode = 'ccm'; 
-        var keysize =  128; // 192 or 256 
-        var iv=sjcl.random.randomWords('4','0'); // Intial Vector 
-        var tag='64'; //Authentication strength 
-        var salt = sjcl.random.randomWords('2','0'); 
-        var adata='userKey'; //Authenticated data 
-        var rp = {}; 
-
-        var p={}; 
-        p.salt=salt; 
-        p.iter=iter; 
-
-        p = sjcl.misc.cachedPbkdf2(password, p); 
-        
-        var key=p.key; 
-        
-        salt=p.salt 
-        
-        console.log(p); 
-
-          p = { adata:adata, 
-                        iter:iter, 
-                        mode:mode, 
-                        ts:parseInt(tag), 
-                        ks:parseInt(keysize) }; 
-                        
-                
-          var ct = sjcl.encrypt( password, userData); 
-          
-          
-        
- 
-    
-   return ct;
 
 
-           
-     
- }
- 
- 
- function decryptedData(userData,userKey){
-
-  var decryptUserData = null;
-
-       
-      
-   var decryptUserData =  sjcl.decrypt(userKey,userData);
-   
-   
-   if(decryptUserData){
-       
-        console.log(userData);
-   }
-   
-   else{
-       
-        console.log(userKey);
-   }
- //  console.log(decryptUserData);
-   
-   
-     return decryptUserData; 
- }
  
  
 
@@ -1181,7 +1099,7 @@ function encryptData(userData,userKey){
     // console.log("DAta"+userData);
 
      
-    
+
      
      for(items = 0 ; items < userData.length ; items++){
       
@@ -1197,14 +1115,14 @@ function encryptData(userData,userKey){
                  
                     if(validateString(userData[items])){
                         validInput[items] = true;
-                        promptAboutValidData(textboxID,userData[items],items);
+                        promptAboutValidData("fullname",userData[items],items);
                         
                     }
                     else{
                         
                           validInput[items] = false;
                          
-                        promptAboutInvalidData(textboxID,"Only String Accepted",items);
+                        promptAboutInvalidData("fullname"," Only String Accepted With Space ",items);
                        
                        
                     }
@@ -1213,7 +1131,7 @@ function encryptData(userData,userKey){
                     
                      validInput[items] = false;
                          
-                        promptAboutInvalidData(textboxID,"Cannot Be Empty",items);
+                        promptAboutInvalidData("fullname","Cannot Be Empty",items);
                        
                     
                     
@@ -1234,14 +1152,15 @@ function encryptData(userData,userKey){
                     if(validateUserId(userData[items])){
                         
                           validInput[items] = true;
-                       promptAboutValidData(textboxID,userData[items],items);
+                          
+                       promptAboutValidData("userid",userData[items],items);
                         
                     }
                     else{
                         
                           validInput[items] = false;
                        
-                         promptAboutInvalidData(textboxID,"User Id Must Be Combination Of Letter And Number ",items);
+                         promptAboutInvalidData("userid","Must be string or alpha-numeric ",items);
                         
                     }
                  }
@@ -1249,7 +1168,7 @@ function encryptData(userData,userKey){
                      
                        validInput[items] = false;
                        
-                         promptAboutInvalidData(textboxID,"Cannot Be Empty",items);
+                         promptAboutInvalidData("userid","Cannot Be Empty",items);
                         
                      
                      
@@ -1276,13 +1195,13 @@ function encryptData(userData,userKey){
                     if(validateMobileNumber(userData[items])){
                         
                          validInput[items] = true;
-                      promptAboutValidData(textboxID,userData[items],items)
+                      promptAboutValidData("mobileno",userData[items],items)
                         
                     }
                     else{
                         
                          validInput[items] = false;
-                         promptAboutInvalidData(textboxID,"Only Number Accepted Up To 10 Digit",items);
+                         promptAboutInvalidData("mobileno","Only Number Accepted Up To 10 Digit",items);
                         
                        
                         
@@ -1292,7 +1211,7 @@ function encryptData(userData,userKey){
                   else{
                         
                          validInput[items] = false;
-                         promptAboutInvalidData(textboxID,"Cannot Be Empty",items);
+                         promptAboutInvalidData("mobileno","Cannot Be Empty",items);
                         
                        
                         
@@ -1308,14 +1227,14 @@ function encryptData(userData,userKey){
                     if(validateEmail(userData[items])){
                         
                         validInput[items] = true;
-                        promptAboutValidData(textboxID,userData[items],items)
+                        promptAboutValidData("email",userData[items],items)
                         
                     }
                     else{
                         
                         validInput[items] = false;
                         
-                         promptAboutInvalidData(textboxID,"Enter Valid Email Address ",items);
+                         promptAboutInvalidData("email","Enter Valid Email Address ",items);
                     }
                     }
                     else{
@@ -1323,17 +1242,12 @@ function encryptData(userData,userKey){
                         
                          validInput[items] = false;
                         
-                         promptAboutInvalidData(textboxID,"Cannot Be Empty",items);
+                         promptAboutInvalidData("email","Cannot Be Empty",items);
                     }
                     
                     
                     
                  break;
-                 
-                
-                 
-                 
-                 
                  
                  
                   case 4:
@@ -1342,14 +1256,14 @@ function encryptData(userData,userKey){
                   
                     if(userData[items]){
                           validInput[items] = true;
-                       promptAboutValidData(textboxID,userData[items],items);
+                       promptAboutValidData("userdate",userData[items],items);
                         
                     }
                     else{
                         
                           validInput[items] = false;
                        
-                         promptAboutInvalidData(textboxID,"Cannot Be Empty",items);
+                         promptAboutInvalidData("userdate","Cannot Be Empty",items);
                         
                     }
                     
@@ -1361,7 +1275,7 @@ function encryptData(userData,userKey){
                  
                  
                  case 5 :
-                     
+                   
                 // console.log("case"+validatePassword(userData[items]))
                  
                  if(userData[items]){
@@ -1369,14 +1283,14 @@ function encryptData(userData,userKey){
                     if(validatePassword(userData[items])){
                         
                           validInput[items] = true;
-                       promptAboutValidData(textboxID,userData[items],items);
+                       promptAboutValidData("password",userData[items],items);
                         
                     }
                     else{
                         
                           validInput[items] = false;
                        
-                         promptAboutInvalidData(textboxID,"Password Must Be At Least 8 Character",items);
+                         promptAboutInvalidData("password","Must Be At Least 8 with 1 UpperCase,1 Digit and character",items);
                         
                     }
                  }
@@ -1384,7 +1298,7 @@ function encryptData(userData,userKey){
                      
                        validInput[items] = false;
                        
-                         promptAboutInvalidData(textboxID,"Cannot Be Empty",items);
+                         promptAboutInvalidData("password","Cannot Be Empty",items);
                         
                      
                      
@@ -1395,7 +1309,39 @@ function encryptData(userData,userKey){
                             
                  break;
                  
+        case 6:
+             if(userData[items]){
                  
+                    if(validatePassword(userData[items])){
+                        
+                          validInput[items] = true;
+                       promptAboutValidData("confirm",userData[items],items);
+                        
+                    }
+                    else{
+                        
+                          validInput[items] = false;
+                       
+                         promptAboutInvalidData("confirm","Must Be At Least 8 with 1 UpperCase,1 Digit and character",items);
+                        
+                    }
+                 }
+                 else{
+                     
+                       validInput[items] = false;
+                       
+                         promptAboutInvalidData("confirm","Cannot Be Empty",items);
+                        
+                     
+                     
+                     
+                 }
+                    
+            
+            
+            
+            
+            break;
                  
                  
              default :
@@ -1445,12 +1391,12 @@ function validateString(userEnteredName) {
     
     
     
-      var namepattern=/[a-zA-Z]/;
+      var namepattern= /^([a-zA-Z]*((\s)))+[a-zA-Z]*/;
 
 
 
 
-    if(isFiledEmpty(userEnteredName) && namepattern.test(userEnteredName))
+    if(namepattern.test(userEnteredName))
     {
                 
                  
@@ -1518,11 +1464,11 @@ function validateMobileNumber(userEnterednumber){
 function validatePassword(password){
     
 
-var passPassword=/^\w{8}|^\d{8}$/;
+var passPassword=/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?!.*\s).{8,}/;
 
 
     
-if(isFiledEmpty(password) && password.length >= 8){
+if(passPassword.test(password) && isFiledEmpty(password) ){
     
     
     
@@ -1562,7 +1508,7 @@ function loginUser(textboxID){
     
     
 var userData = [] ;
-
+var key ="";
 var db = {};
 var numberOfRecords = 0;
 
@@ -1597,39 +1543,35 @@ try {
 
 db.executeSql('Select * from userinfo').then(function(records){
     
-    
-   
-   userPassword = generateEncryptedKey(userPassword);
+    key = generateHashKey(userName + userPassword);
+   console.log(key);
+   //userPassword = generateHashKey(userPassword);
    
  
   
   for(items = 0 ; items < records.length ; items++){
       
       
-    
-      
-      
-    
-   name = records[items].UserID;
-      
-     // console.log(name);
+   name = records[items].key;
+ 
+     console.log(name);
       
       
       if(name.length){
       
+     //console.log(validateCredential(userName,name));
       
-      console.log(validateCredential(userName,name, userPassword));
-          if(validateCredential(userName,name, userPassword)){
+          if(validateCredential(key,name)){
               
       
               count = count + 1; 
               
                 setTimeout(addLoader(),100); 
                 
-               setSessionKey(getKeyName(),userPassword);
+               setSessionKey(getKeyName(), userPassword);
                
                  setSessionKey("databaseName",getRandowmName(userName));
-                setSessionKey("userinfo",encryptData(userName,userPassword));
+                setSessionKey("userinfo",generateHashKey(userName));
             
               
                
@@ -1646,7 +1588,7 @@ db.executeSql('Select * from userinfo').then(function(records){
       
   }
   
- 
+ console.log(count)
   if(count == 0){
       
       
@@ -1673,12 +1615,10 @@ catch(err) {
 }
 
 
-function validateCredential(userRecordName,userName,userKey){
+function validateCredential(userRecordName,userName){
     
- console.log(decryptedData(userName,userKey));
-    userName = decryptedData(userName,userKey);
-    
-    
+ 
+   
     if(userName === userRecordName){
         
         
@@ -1785,11 +1725,11 @@ function getRandowmName(userName){
 function validateUserId(password){
     
 
-var passPassword=/[a-zA-Z]{2}\d{3}[a-zA-Z0-9]{1}/;
+var passPassword=/^[a-zA-Z0-9]+(?:[a-zA-Z0-9]+)*$/;
 
 
     
-if(isFiledEmpty(password) && password.length >= 8){
+if(passPassword.test(password) && isFiledEmpty(password)  ){
     
     
     
@@ -1827,7 +1767,7 @@ function addLoader(){
          
          
           loaderDiv.style.display ="block";
-        loaderDiv.appendChild( loadingDiv);
+        loaderDiv.appendChild(loadingDiv);
   
     
     
@@ -1839,18 +1779,42 @@ function addLoader(){
     
 }
 
-function checkSupport(){
+function getClear(){
     
+   clearTextBoxInput('InputName');
+      
+  $('#myModal').modal('hide');
+  
     
-    if(!window.indexedDB){
-      
-      alert("Your BrowserDo not support Indexed db");
-  }
-  else{
-      
-        alert("support Indexed db");
-  }
+}
 
+
+
+
+
+
+function validateConfirmPassword(Password,confirmPassword){
+    
+    if(Password != confirmPassword){
+         document.getElementById('confirm').setCustomValidity("Passwords Don't Match");
+     return false;   
+        
+    }
+    else{
+        
+        
+        return true;
+    }
+    
+    
     
     
 }
+
+
+
+
+  
+ 
+
+ 

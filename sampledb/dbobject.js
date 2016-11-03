@@ -232,7 +232,7 @@ stores: [
 {
     
     name : 'user',
-    autoIncrement: true,
+     keyPath : 'date'
  
 
     

@@ -7,28 +7,28 @@
 
 
 
-RemoteStorage.defineModule('bicSoftware', function(privateClient) {
+RemoteStorage.defineModule('bicnSy', function(privateClient) {
     
-  privateClient.declareType('data', {
+  privateClient.declareType('UserData', {
     
     type: 'object',
     description : 'User Data',
     properties: {
       
-      name: { type: 'string' },
       
-      password: { type: 'string' },
+      
+      userinfo : { type : 'string'},
       
       website: { type:'string' },
   
       hint: { type: 'string' },
       
      date : {type : 'number'}
-      
+     
       
     },
     
-    required: ['name','password','website','hint']
+    required: ['userinfo']
     
   });
 
@@ -55,7 +55,7 @@ RemoteStorage.defineModule('bicSoftware', function(privateClient) {
         
        
        
-        return privateClient.storeObject('data',Id,userData);
+        return privateClient.storeObject('UserData',Id,userData);
         
         
       },
@@ -65,7 +65,7 @@ RemoteStorage.defineModule('bicSoftware', function(privateClient) {
         
        userId = userId.toString().replace(/\s|\//g, '-');
       
-         return privateClient.storeObject('data',userId,userData);
+         return privateClient.storeObject('UserData',userId,userData);
          
       },
 

@@ -5,19 +5,19 @@ function loadRemoteStorageData(){
      RemoteStorage.config.changeEvents.window = false;
 
 
-    remoteStorage.access.claim('bicSoftware','rw');
+    remoteStorage.access.claim('bicnSy','rw');
 
 
     remoteStorage.displayWidget();
 
-    remoteStorage.bicSoftware.init();
+    remoteStorage.bicnSy.init();
 
-   remoteStorage.bicSoftware.getUserData().then(function(userData){
+   remoteStorage.bicnSy.getUserData().then(function(userData){
         
         for(var items in userData){
             
           
-                 removeDuplicate(userData[items]);
+              // removeDuplicate(userData[items]);
             
             
             
@@ -25,7 +25,7 @@ function loadRemoteStorageData(){
         
         
         
-        
+        console.log("data added")
         
     });
     
@@ -38,44 +38,39 @@ function loadRemoteStorageData(){
 
     
     function removeDuplicate(object){
-        console.log(object)
- 
-    var numberOfItem = null;
+     
+   console.log(   "1");
+                  
+  var numberOfItem = null;
   var userData = {};
   var flag = false;
   var userEncryptionKey = null;
   var count = 0;
-  var countArray = [] ;
-  var userName = [];
-  var dataItem = [];
 
-   var userArray = ['name','password','website','hint','date'];
-   
+ console.log(   "2");
+ 
  var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
  
-
+ console.log("3");
  db.executeSql('SELECT * FROM  user').then (function(results) {
    
    
- userEncryptionKey =  getSessionPassword() ;
- 
-  
  if(results.length){
         
 
-       
-   
-        
         for(numberOfItem = 0 ; numberOfItem < results.length ; numberOfItem++) {
-          
-                
-                   
-                   
-                  userData  = decryptAllData(results[numberOfItem],userEncryptionKey,userArray);
+    
+                  userData  = results[numberOfItem];
                   
-               
-                   
-                    if(userData.name !== decryptedData(object.name, userEncryptionKey)){
+                    console.log( (object) );
+                   console.log("old"+(userData) );
+                
+                  
+                  
+                    console.log( (object.userinfo) );
+                    
+                    
+                    if((userData.userinfo) !==  (object.userinfo)){
                         
                              count = count + 1;
                              
@@ -94,7 +89,7 @@ function loadRemoteStorageData(){
                     
                 
              }
-             
+             console.log(count);
            if(count){
                 
            
@@ -106,10 +101,8 @@ function loadRemoteStorageData(){
                      
            }    
              
-             
-          
-          
- }
+ }  
+ 
  else{
      
      
@@ -122,11 +115,7 @@ function loadRemoteStorageData(){
      
  }
  
- 
-
-      
-        
-        
+     
 
 }, function(e) {
     
@@ -141,36 +130,16 @@ function loadRemoteStorageData(){
     }
    
  
-function getUserObject(userName,userAddress,userNumber,userEmail,userKey){
-    
-  
-    
-  var propertyNameArr = [ "name","password","website","hint","date"];
-  var userDataArr = [userName,userAddress,userNumber,userEmail];
-  var userDataObject = {};
-  var items=0;
-    
-   var  userEncryptionKey = userKey ;
-    
-    //console.log( userEncryptionKey)
-    
-  
-    
-    
-//console.log(userDataArr)
 
-    for(items = 0; items < propertyNameArr.length; items++){
     
-
+    function convertJsonToObject(userdata){
         
-         userDataObject[propertyNameArr[items]] = userDataArr[items];
-       
+        var object = "";
+        
+        object = JSON.parse(userdata) ;
+        
+        
+        return object;
+        
         
     }
-    //console.log(   userDataObject);
-    
-    return userDataObject;
-    
-    
-} 
-    

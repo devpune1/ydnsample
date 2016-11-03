@@ -335,20 +335,13 @@ function getData(textboxID){
     
     
      var userData = [];
-   var count=0;
-   var obj=null;
-   var flag = null;
-   var userDate;
-   
+ 
 
-  
-  
-  
   
   for(var items = 0; items <  textboxID.length ; items++){ 
     
     
-    userData[items] = document.getElementById( textboxID[items]).value;
+    userData[items] = document.getElementById(textboxID[items]).value;
     
     
     
@@ -371,8 +364,11 @@ return userData;
 function createDataSource( dataSource ){
     
    $(document).ready(function() {
+       
     $('#example').DataTable( {
+        
         data:dataSource ,
+        
         columns: [
             { title: "Name" },
             { title: "Password" },
@@ -468,17 +464,17 @@ function createTable(count,userName,userPassword,userWebsite,userHint,userDate){
 
 
 
-var dataSet = [userName,userPassword,userWebsite,userHint,userDate];
+var dataSet = [count,userName,userPassword,userWebsite,userHint,userDate,"delete"];
 var dataSource = []
 
         dataSource.push(dataSet);
         
-        createDataSource( dataSource );
+        displaySortedData( dataSource,"here" );
         
+*/
 
 
 
-/*
          userRow = document.createElement('tr');
          
          
@@ -491,6 +487,7 @@ var dataSource = []
   
           deleteRecord = document.createElement('img');
           deleteRecord.id = 'deletebutton';
+              deleteRecord.width = '30';
           
           deleteRecord.setAttribute('src', 'images/remove.png');
      
@@ -506,7 +503,7 @@ var dataSource = []
            deleteRecord.style.background = "edit.png" ;
  
 
-          userRowNumber=document.createElement('td');
+          userRowNumber =document.createElement('td');
           userNameRow=document.createElement('td');
           userPasswordRow=document.createElement('td');
           userWebsiteNameRow=document.createElement('td');
@@ -518,8 +515,8 @@ var dataSource = []
           deleteRecord.onclick = function (){
               
                userKey = getSessionPassword();
-               
-               deleteData(userName,userPassword,userWebsite,userHint,userDate,userKey);
+               console.log(userDate)
+               deleteData(userDate);
         
             
            }
@@ -528,7 +525,7 @@ var dataSource = []
                
                 userKey = getSessionPassword();
                 generateEditForm(userName,userPassword,userWebsite,userHint,userDate,userKey);
-         
+                  
               getRecord();
      
           }
@@ -538,22 +535,15 @@ var dataSource = []
   
   
 
-        
+        console.log(userDate)
           userRowNumber.appendChild(document.createTextNode(count));
           userNameRow.appendChild(document.createTextNode(userName));
           userPasswordRow.appendChild(document.createTextNode(userPassword));
           userWebsiteNameRow.appendChild(document.createTextNode(userWebsite));
           userHintRow.appendChild(document.createTextNode(userHint));
-          
-         
- 
-    
-  
-       
+         userDateRow.appendChild(document.createTextNode(epochToDate(userDate,userDateRow)));
         
-        
-        
-          userRowNumber.width='25px';
+           userRowNumber.width='25px';
            userNameRow.width='175px';
            userPasswordRow.width='175px';
            userWebsiteNameRow.width='175px';
@@ -565,29 +555,29 @@ var dataSource = []
             userRow.appendChild(userPasswordRow);
             userRow.appendChild(userWebsiteNameRow);
             userRow.appendChild(userHintRow);
-            userRow.appendChild(epochToDate(userDate,userDateRow));
-       
-    
-        
-         
-            userRowNumber.width='100px';
-           userActionButton = document.createElement('td');
-         
-         userActionButton.width ='100px';
+           userRow.appendChild( userDateRow);
             
-          userActionButton.appendChild(deleteRecord);
+            
+      
+            userRowNumber.width='100px';
+            
+            userActionButton = document.createElement('td');
          
-          userActionButton.appendChild(editRecord);
+           userActionButton.width ='150px';
+            
+           userActionButton.appendChild(deleteRecord);
+         
+           userActionButton.appendChild(editRecord);
         
-         userRow.appendChild( userActionButton);
+         userRow.appendChild(userActionButton);
          
           
          createTable.appendChild(userRow);
-           createTablebody.appendChild( createTable);
+         createTablebody.appendChild( createTable);
        
         userTable.appendChild(createTablebody);
    
-   */
+   
     
 }
 
@@ -600,12 +590,11 @@ function createTableHeader(){
     
     var userRowNumber,userTable,userRow,createTable,userNameRow,userWebsiteRow,userPasswordRow,userHintRow,userDateRow;
     var userDeleteButton,deleteRecord,userEditButton,editRecord;
-    
 
-    /*
+    
       userNameRow = document.createElement('th');
     
- 
+ /*
     
           userNameRow.onclick = function(){
               
@@ -643,7 +632,7 @@ function createTableHeader(){
  
           }
     
-    
+   */ 
     
           userTable = document.getElementById('usertable');
           createTable = document.createElement('Table');
@@ -686,8 +675,8 @@ function createTableHeader(){
            userHintRow.width='175';
            userDateRow.width='175';
            
-           userDeleteButton.width='100px';
-           userEditButton.width='175';
+           userDeleteButton.width='175px';
+           userEditButton.width='175px';
      
           userRow.appendChild(userRowNumber);
            userRow.appendChild(userNameRow);
@@ -708,7 +697,7 @@ function createTableHeader(){
        
         userTable.appendChild(createTable);
 
-    */
+    
     
 }
 
@@ -724,65 +713,44 @@ function resetStaticCount(){
 
 
 
-function deleteData( userName,userPassword,userWebsite,userHint,userDate,userKey) {
+function deleteData(userDate) {
     
-    var numberOfItems = null;
-   var path = "";
-    var propertyNameArr = ["name","password","website","hint","date"];
-    var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
-    
-    var userDataObject = getEncryptedUserObject(userName,userPassword,userWebsite,userHint,userDate,userKey);
    
    
-   console.log(userDataObject);
-    var items=0;
+    
     var flag = null; 
     
 
 
    
-    
-
-    
-db.keys('user').done(function(keys) {
-      
-    db.values('user').done(function(userData) {
+              flag = confirm("Do you want to delete");
         
-        
-     
-      for ( numberOfItems= 0; numberOfItems < keys.length; numberOfItems++) {
-        
-            
-              flag = validateUserData(userDataObject,userData[numberOfItems],userKey,propertyNameArr);
-        
-                   console.log(flag)
                    
                     if(flag){
                         
-                        path = JSON.parse(userData[numberOfItems].name);
-                        
-                        remoteStorage.bicSoftware.removeUserData(path.ct);
-                        
-                       db.remove('user',keys[numberOfItems]);
-                       reloadTable();
+                     //  path = JSON.parse(userData[numberOfItems].userinfo);
+                   // remoteStorage.bicnSy.removeUserData(path.ct);
                        
-                      break;
+                      deleteRecord("user",userDate);
+                     
                       
                     }
        
            
-      }
-     
-    })
-    
-    
-  });
-    
+   
 
-    
 
 }
 
+
+function deleteRecord(userTable,userId){
+    
+     var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
+     
+     db.remove(userTable,userId);
+                       reloadTable();
+    
+}
 
 
 
@@ -848,10 +816,74 @@ function reloadTable(){
   var dataItem = [];
   
   var dataSource = [];
-   var userArray=['name','password','website','hint','date'];
+   var userArray=['userinfo','website','hint','date'];
+    
+     var userKey = getSessionPassword();
+   var userDisplayArray=['name','password','website','hint','date'];
   document.getElementById('usertable').innerHTML="";
   
  var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
+
+
+ var df = db.values('user');
+
+  df.done(function (items) {
+      
+    var n = items.length;
+     createTableHeader();
+    
+    for (var i = 0; i < n; i++) {
+        
+     userData = decryptUserData((items[i]),userArray,userKey);
+     
+     createTable( i + 1 ,userData.name,userData.password,userData.website,userData.hint,userData.date);
+     
+     
+     
+     
+     
+    //dataSource.push(getArrayOfData(userData,userDisplayArray));
+  
+        // displaySortedData(dataSource,items[i].date);
+         
+ 
+      
+   
+    /*     
+    document.getElementById("example ").addEventListener("click", function(){
+
+ 
+     var table = $('#example').DataTable();
+   
+     var dataSelected = table.row( $(this).parents('tr') ).data();
+     
+    deleteData(items[i].date);
+     
+     
+     table.row($(this).parents('tr') ).remove().draw();
+     
+   dataSelected.length = 0;
+ 
+       
+    });
+    */
+    
+    }   
+  } );
+
+  df.fail(function (e) {
+    console.error(e);
+  });
+
+
+
+
+
+
+
+
+/*
+
 
  db.executeSql('SELECT * FROM user ').then (function(results) {
    
@@ -869,19 +901,18 @@ function reloadTable(){
         for(numberOfItem = 0 ; numberOfItem < results.length ; numberOfItem++) {
           
                    
-                  
-                  userData  = decryptAllData(results[numberOfItem],userEncryptionKey,userArray);
+                  console.log(results[numberOfItem]+"key = "+userEncryptionKey);
+                  //userData = decryptAllData(results[numberOfItem],userEncryptionKey,userArray);
+                        
+                         userData = decryptUserData(results[numberOfItem],userArray,userEncryptionKey);  
                             
-                            
-                            console.log(userData.name);
+                          console.log(  userData );
                     if(userData.name ){
                         
                             count = count + 1;
                            
-                            
-                       
-                        dataSource.push(getArrayOfData(userData,userArray));
-                         console.log(dataSource + ""+count);
+                        dataSource.push(getArrayOfData(userData,userDisplayArray));
+                         console.log(dataSource+""+count);
                        // createTable(count,userData.name,userData.password,userData.website,userData.hint,userData.date);    
                         
                     
@@ -942,106 +973,103 @@ else{
     
 });
 
-
+*/
 
 }
 
 
 
-function displaySortedData(dataSource){
+function displaySortedData(dataSource,timestamp){
+ 
     
-     var userKey = getSessionPassword();
     
-    $(document).ready(function() {
-        
-       
-    $('#example').DataTable( {
-         
-   responsive: true,
+    
+    
+   
+    
+     $(document).ready(function() {
+    
+  $('#example').DataTable( {
+        responsive: true,
         "bJQueryUI": true,
          "destroy": true,
-        data:dataSource,
-        columns: [
-            { title: "Name" },
-            { title: "Password" },
-            { title: "Website" },
-            { title: "Hint" },
-            { title: "Date" },
-            {
-            title: "Action",
-            "targets": -1,
-            "data": null,
-            "defaultContent": "<input type = 'button'  class = 'editButton' ></input> <input type= 'button' class = 'deleteButton' > </input>" 
-        }
-           
-        ]
+        data: dataSource,
+              columns: [
+                        { title: 'Name',  className: "center", },
+                        {title: 'Password' ,  className: "center",},
+                        { title: 'Website',  className: "center", },
+                        {title: 'Hint',className: "center", },
+                       {title: 'Date',className: "center", },
+                      
         
-        
-
-    } );
+                         {
+                         title : 'Action',
+                         default :-1,
+                      className: "center",
+                "defaultContent": "  <input type= 'button'  class = 'editButton' id = 'editButton'> </input><input type= 'button' id='deleteButton' class = 'deleteButton' > </input>" 
+                          
+                          
+                        }
+                        
+                     ,
+                        /* 
+                         
+                         {
+                            render: function(o, type, data) {
+                return "<a class='md-btn' onClick='deleteData(this, &quot;" + timestamp + "&quot;)'>Delete</a>";
+             }
+        },*/
+                         
+                         
+                     
+                ],
+                
+                
+                
+                
+                
+                
+                
+    });
     
     
- 
-      $('#example').on('click', 'input.editButton', function (e) {
+    
+    
+     $('#example').on('click', 'input.editButton', function (event) {
       
-         var table = $('#example').DataTable();
-       var dataSelected = table.row( $(this).parents('tr') ).data();
-      
-      
-
-             
+     var table = $('#example').DataTable();
+   
+     var dataSelected = table.row( $(this).parents('tr') ).data();
+     
+     var oldKey = dataSelected[0];
+     
+     
            
-     var userDate = toDate(dataSelected[4]);
- 
-            userDate =  userDate.getTime();
+       generateEditForm(dataSelected[0],dataSelected[1],dataSelected[2],dataSelected[3],userKey);
+     
+      remoteStorage.bic.removeData(previoususerData.userName);
             
-             
-       generateEditForm(dataSelected[0],dataSelected[1],dataSelected[2],dataSelected[3], userDate,userKey);
-         console.log("created"+dataSelected)
-            
-  // dataSelected.length = 0;
+   dataSelected.length = 0;
  
        
     } );
-    
-    
-    
-    
-      $('#example').on('click', 'input.deleteButton', function (e) {
       
-       var table = $('#example').DataTable();
-       var dataSelected = table.row( $(this).parents('tr') ).data();
-        
-    
-    var userDate = toDate(dataSelected[4]);
- 
-            userDate =  userDate.getTime();
-        
-             
-       deleteData(dataSelected[0],dataSelected[1],dataSelected[2],dataSelected[3], userDate,userKey);
-             
-             table.row('.selected').remove().draw( false );
-             
-         console.log("created"+dataSelected)
-            
-   //dataSelected.length = 0;
- 
-       
-    } );
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-} );
-    
+   
+  
 
+    
+    
+    });
+    
+    
+    
+ 
+    
+    
+    
+    
+   
+   
     
 }
 
@@ -1064,14 +1092,7 @@ function selectedButton(choice,object){
     
     
     if(choice == 'editButton'){
-    
-   
-   
-   
 
-
-
- 
     }
     
     if(choice == 'deleteButton'){
@@ -1080,19 +1101,24 @@ function selectedButton(choice,object){
     var dataSelected = [];     
     var table = $('#example').DataTable();
  
+
+ /*
 $('#example tbody').on( 'click', 'td', function () {
+   
      var userKey = getSessionPassword();
    dataSelected.push(table.cell( this ).data())
            
-       var userDate= toDate(dataSelected[0][4]);
-            userDate =  userDate.getTime();
-         deleteData(dataSelected[0][0],dataSelected[0][1],dataSelected[0][2],dataSelected[0][3], userDate ,userKey);
+       var userDate = new Date(dataSelected[4]);
+     userDate =  userDate.getTime();
+        
+            console.log("asd"+ userDate)
+         deleteData( dataSelected[4].getTime());
           
     dataSelected.length = 0;
-    
+ 
       
 } );
- 
+   */ 
         
        
         
@@ -1204,6 +1230,48 @@ function getEditDData(previousData,editedData,userKey,tableName){
     var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
    
 console.log(editedData);
+
+
+
+  flag = confirm("Do You Want To Edit ?");
+
+
+
+  if(flag){
+                          
+                          
+                          //path = JSON.parse(editedData.userinfo);
+                          //console.log(editedData.userinfo)
+                         //remoteStorage.bicnSy.removeUserData(path.ct);
+                          console.log(previousData )
+                        console.log(editedData)
+                        performEditing(editedData,tableName);
+                    deleteRecord(tableName,previousData.date); 
+                        
+                     
+                       
+                }
+        
+     
+          
+       
+          
+          
+          
+          
+      }
+     
+
+
+
+
+
+
+
+
+
+
+/*
  
  db.keys(tableName).done(function (keys){
 
@@ -1223,17 +1291,17 @@ console.log(editedData);
 
 
           
-              flag = validateUserData(previousData,results[items],userKey,userDataProperty);
         
          
                  console.log(flag);
                  
                     if(flag){
-                        
-                                path = JSON.parse(results[items].name);
-                                remoteStorage.bicSoftware.removeUserData(path.ct);
+                          var userdate = new Date (obj.date).getTime();
+                 console.log(userdate);
+                               path = JSON.parse(results[items].userinfo);
+                             remoteStorage.bicnSy.removeUserData(path.ct);
                                performEditing(editedData,key,tableName);
-                              
+                           
                 
                       break;
                        
@@ -1275,19 +1343,18 @@ console.log(editedData);
     
 
  });
+  */  
     
-    
-}
 
 
-function performEditing(userRecord,key,tableName){
+
+function performEditing(userRecord,tableName){
     
     var userData =  [];
-    var  userDate = generateCurrentDate();
+    var  userDate = new Date().getTime();
     var userKey =  getSessionPassword();
     var propertyNameArr = ["name","password","website","hint","date"];
-    
-    
+   
      var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
      
      
@@ -1347,7 +1414,7 @@ function performEditing(userRecord,key,tableName){
                                         else{
                                             
                                                 
-                                                 userData[rowCount]="Nil";
+                                                 userData[rowCount]= performEncryption("Nil",userKey);
                                                 
                                             
                                             
@@ -1398,7 +1465,7 @@ function performEditing(userRecord,key,tableName){
                                         else{
                                             
                                                 
-                                                 userData[rowCount]="Nil";
+                                                 userData[rowCount]= performEncryption("Nil",userKey);;
                                                 
                                             
                                             
@@ -1433,7 +1500,7 @@ function performEditing(userRecord,key,tableName){
                                         else{
                                             
                                                 
-                                                 userData[rowCount]="Nil";
+                                                 userData[rowCount]= performEncryption("Nil",userKey);;
                                                 
                                             
                                             
@@ -1456,20 +1523,19 @@ userData[rowCount] =  userDate;
        
              var obj = getUserDataObject(userData,propertyNameArr);
              
-             
-                path = JSON.parse(obj.name);
-                        
-                        
+            obj = createSensitiveEncryptedObject(obj,propertyNameArr,userKey)
             
-              remoteStorage.bicSoftware.editUserData(path.ct,obj);
+                //path = JSON.parse(obj.userinfo);
+              
+             //remoteStorage.bicnSy.editUserData(path.ct,obj);
                         
    
-              db.put(tableName,obj,key).done(function(x) {
+              db.put(tableName,obj).done(function(x) {
             
                   
               });
                   
-             getRecord();
+         
              
           window.setTimeout(function(){ clearTextBoxValue() },1000);
          
@@ -1495,8 +1561,8 @@ userData[rowCount] =  userDate;
 
 
 });
-    
-    
+  //  document.getElementById('userTable').innerHTML="";
+
 }
 
 
@@ -1537,7 +1603,6 @@ for(items = 0 ;items < userId.length; items++){
 
 
 
-
 /*===================================================EDIT USER RECORD=========================================================*/
 
 
@@ -1551,7 +1616,7 @@ function generateEditForm(userName,userPassword,userWebsite,userHint,userDate,us
     var  editedData =  {};
     var userEncryptionKey = userKey;
     var popupTextBoxId = ["name","password","website","hint"];
-    
+    var userDataRecord = [];
     
     var propertyArray = ["name","password","website","hint","date"];
     var previousUserData = [userName,userPassword,userWebsite,userHint,userDate];
@@ -1648,35 +1713,42 @@ function generateEditForm(userName,userPassword,userWebsite,userHint,userDate,us
     editUserWebsite.value  = userWebsite;
     editUserHint.value = userHint;
     
-    
+   
  
    
      save.onclick = function(){
          
 
-    var userRecord = getData(popupTextBoxId); 
-         
-         
-    //userRecord.push(generateCurrentDate());
-        
        
+    
+    
+    
+      
          
-        previousData = getEncryptedUserObject(userName,userPassword,userWebsite,userHint,userDate,userKey);
-        
-        //  editedData = getEncryptedUserDataObject(editUserName.value,editUserPassword.value,editUserWebsite.value,editUserHint.value,editUserDate,userEncryptionKey);
-        
-        
-        console.log( previousData);
-         editedData = userRecord;
          
-        editedData.push(generateCurrentDate());
+         console.log( userDataRecord)
+         
+         
+             
+        
+        var obj = getUserDataObject(previousUserData,propertyArray );
+         
+           previousData = createSensitiveEncryptedObject(obj,propertyArray ,userKey)
+         console.log( previousData)
+         
+         
+                
+       
+    
+        //editedData.push(generateCurrentDate());
         //editUserDeatils(previousData,editedData,'user')
         
-        getEditDData(previousData,editedData,userEncryptionKey,'user');
-         reloadTable();
+       getEditDData(previousData, getData(popupTextBoxId),userEncryptionKey,'user');
+        
+    
              document.getElementById('editdiv').innerHTML = "";
             document.getElementById('editwindow').style.display = "none";
-           
+              
      }
      
      cancel.onclick = function(){
@@ -1719,9 +1791,9 @@ function validateUserData(userDataObject,results,userEncryptionKey,userDataPrope
     var flag = 0;
 
    
-   results = decryptAllData(results,userEncryptionKey,userDataProperty);
+   results = decryptUserData(results,userEncryptionKey,userDataProperty);
    
-   userDataObject = decryptAllData(userDataObject,userEncryptionKey,userDataProperty);
+   userDataObject = decryptUserData(userDataObject,userDataProperty,userEncryptionKey);
     
     
     
@@ -1786,7 +1858,7 @@ else{
 function getUserDataObject(userData,propertyNameArr){
     
     
-       
+      console.log("her"+ userData) 
   
   var userDataArr = userData;
   
@@ -1841,7 +1913,7 @@ console.log(userDataArr)
        
         
     }
-    console.log(   userDataObject);
+    console.log(userDataObject);
     
     return userDataObject;
     
@@ -2024,62 +2096,6 @@ function setFont(){
  
 
  
- function encryptData(userData,userKey){
-
-      var encryptedData = "";
-      
-      var password = userKey; // user password. 
-      
-        var iter= 1000; // Strengthen by a factor 
-        
-        var mode ='ocb2'; // Mode for encryption.
-        
-        var keysize = 128; // 192 or 256 
-        
-        var iv=sjcl.random.randomWords('4','0'); // Intial Vector 
-        
-        var tag='64'; //Authentication strength 
-        
-        var salt = sjcl.random.randomWords('2','0'); 
-        
-        var adata='userKey'; //Authenticated data 
-        var rp = {}; 
-
-        var p={}; 
-        
-        p.salt=salt; 
-        p.iter=iter; 
-
-        p = sjcl.misc.cachedPbkdf2(password, p); 
-        
-        var key=p.key; 
-        
-        salt=p.salt 
-        
-        console.log(p); 
-
-          p = { 
-              
-              adata:adata, 
-              
-            iter:iter, mode:mode, 
-          
-            ts:parseInt(tag), 
-            
-             ks:parseInt(keysize) 
-              
-              
-          }; 
-                        
-                      
-          encryptedData = sjcl.encrypt(userKey, userData,p,rp); 
-          
-          
-   return encryptedData;
-
-
- }
- 
  
  
 
@@ -2163,19 +2179,7 @@ function setFont(){
  
  
 
- function decryptedData(userData,userKey){
 
-  console.log("vale "+ userData)
-  
-   console.log(userKey)
-
-   var x =  sjcl.decrypt(userKey,userData);
-
-   console.log(x)
-return x;
-
-   
- }
 
 
 
@@ -2240,7 +2244,7 @@ function getObjectKey(){
                      else{
                          
                          
-                          userDecryptedData[userArray[items]] = decryptedData(userData[userArray[items]],userKey);
+                          userDecryptedData[userArray[items]] = decryptData(userData[userArray[items]],userKey);
                          
                          
                          
@@ -2280,7 +2284,7 @@ function getObjectKey(){
                     
                          
                          
-                          userDecryptedData[items] = decryptedData(userData[userArray[items]],userKey);
+                          userDecryptedData[items] = decryptData(userData[userArray[items]],userKey);
                          
                          
                          
@@ -2317,7 +2321,7 @@ function decryptDatabaseData(userData,userArray,userKey){
                 
                     
                        
-                     if(decryptedData(userData[userArray[items]],userKey) == ""){
+                     if(decryptData(userData[userArray[items]],userKey) == ""){
                          
                     
                            userDecryptedData[items] = userData[userArray[items]];
@@ -2328,7 +2332,7 @@ function decryptDatabaseData(userData,userArray,userKey){
                      else{
                          
                          
-                          userDecryptedData[items] = decryptedData(userData[userArray[items]],userKey);
+                          userDecryptedData[items] = decryptData(userData[userArray[items]],userKey);
                          
                          
                          
@@ -2401,13 +2405,14 @@ function getUserDateFormatChoice(setting ){
 
 
 
-function epochToDate(userEpochDate){
+function epochToDate(userEpochDate,userDate){
 
     var choice;
     var  userDateSetting = [];
     var userDate =new Date(userEpochDate);
     var userDateRow = "";
     
+ console.log(userDate);
  
     var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
     
@@ -2424,7 +2429,7 @@ function epochToDate(userEpochDate){
     });
     
     
-    console.log( userDateSetting)
+    console.log( userDateSetting);
     choice = getUserDateFormatChoice(userDateSetting);
    
 
@@ -2693,19 +2698,6 @@ if(masterPassword !== 'null' || masterPassword === ''){
 
 /*=================================================== MD5 HASH   Function=========================================================*/
 
-function generateHashKey(userKey){
-    
-      var hashedKey=null;
-    
-    
-    
-     hashedKey = CryptoJS.MD5(userKey);
-    
-     
-    return hashedKey;
-    
-
-}
 
 
  
@@ -2862,7 +2854,7 @@ function generateCurrentDate(){
    var currentYear = curDate.getFullYear();
     
     
-    
+    console.log(curDate.getTime());
 
     var  date = new Date(currentYear,currentMonth,currentDay);
         
@@ -3287,7 +3279,7 @@ selectChoice.onclick=function(){
                       
                     inputType.innerHTML = userWebsiteName.value;
                     inputType.style.marginTop = -18 +"px";
-                    inputType.style.marginLeft = 200 +"px";
+                    inputType.style.marginLeft = 280 +"px";
                     inputType.style.fontSize = 20 + "px";
                       
                       
@@ -3340,10 +3332,15 @@ selectChoice.onclick=function(){
                dateFormat: 'dd/mm/yy',
                
                   onSelect: function(date) {
-                      
-                      userStartDate = toDate(date);  
+                       userStartDate = (date)
+                userStartDate = toDate(date);  
+                       //userStartDate = new Date(userStartDate);
+                       
+                     
+                     
                       inputType.innerHTML = date;
                       
+                      console.log(userStartDate)
                       
                  }
                       
@@ -3353,7 +3350,8 @@ selectChoice.onclick=function(){
             search.onclick = function(){
                 
                         
-                       
+                        console.log(userStartDate);
+                         console.log(currentDate);
                          
                                         if(validateByDates(userStartDate,currentDate)) {
                        
@@ -3538,10 +3536,12 @@ selectChoice.onclick=function(){
                
                
                                         dateFormat: 'dd/mm/yy', 
+                                        
                                           onSelect: function(date) {
                       
-                                           userStartDate = toDate(date);  
-                                           
+                                              userStartDate = (date)
+                                         userStartDate = toDate( userStartDate);  
+                                         
                                   }
                       
            
@@ -3564,8 +3564,8 @@ selectChoice.onclick=function(){
                                  dateFormat: 'dd/mm/yy',  
                 
                               onSelect: function(date) {
-                      
-                             userEndDate = toDate(date);  
+                            userEndDate = (date)
+                      userEndDate = toDate( userEndDate);   
                  }
                       
            
@@ -3589,14 +3589,20 @@ selectChoice.onclick=function(){
               
               inputType.innerHTML = "FROM DATE = "+ setDate(userStartDate)+"     "+" TO DATE = " +setDate(userEndDate);
               
+              console.log(userStartDate);
               
+              
+               console.log(userEndDate);
                var  value = validateByDates(userStartDate,userEndDate);
                 
               
                         
                 switch(value) {
                     
+                   
+                    
                     case 1 :
+                                     console.log(0)
                                     createTableHeader();
                                    getRecord();
                                    
@@ -3608,7 +3614,7 @@ selectChoice.onclick=function(){
                                 break;  
                                 
                     case 2 :       
-                        
+                          console.log(2)
                                  createTableHeader();
                                  
                                  
@@ -3624,7 +3630,7 @@ selectChoice.onclick=function(){
                                 
                 
                     case 3 :       
-                        
+                          console.log(3)
                                  createTableHeader();
                                  
                                     var getDay = "01";
@@ -3644,7 +3650,7 @@ selectChoice.onclick=function(){
    
    
                      case 4 :       
-                        
+                        console.log(4)
                                     createTableHeader();
                                      getRecordByDates(userStartDate,userEndDate);
                                    
@@ -3653,7 +3659,8 @@ selectChoice.onclick=function(){
            
                                 break;  
                                 
-   
+   default : 
+   break;
    
                               
 }
@@ -3795,7 +3802,10 @@ function setDate(userDate){
     
     if(userDate)
     {
+        userDate =  new Date(userDate);
+        
         dateString = userDate.getDate()+"/"+(userDate.getMonth() + 1) +"/"+userDate.getFullYear();
+    console.log( dateString);
     
       return dateString;
     }
@@ -4002,6 +4012,9 @@ function validateYear(startYear,endYear){
 
 function searchByLike(userWebsiteName,recordWebsiteName){
     
+    
+    console.log(userWebsiteName);
+   console.log(recordWebsiteName);
    
     var matchPattren = new RegExp(userWebsiteName);
     
@@ -4011,8 +4024,8 @@ function searchByLike(userWebsiteName,recordWebsiteName){
     }
     else{
         
-        
         return false;
+        
     }
     
 }
@@ -4027,16 +4040,17 @@ function serachByUserRecord(userSearchData,userPropertyName){
   
 
    
-  var userData =null;
+  var userData = {};
   var numberOfItem = null;
   var records=0 ;
   var count =0;
   var flag = false;
  var  userEncryptionKey = getSessionPassword();
- var userArray=['name','password','website','hint','date'];
+ var userArray = ['userinfo','website','hint','date'];
   var dataSource = [];
   
    var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
+   
   if (userSearchData) {
       
     
@@ -4053,22 +4067,27 @@ function serachByUserRecord(userSearchData,userPropertyName){
         
               for(numberOfItem = 0 ; numberOfItem < results.length ; numberOfItem++) {
           
-                            userData  =  decryptAllData(results[numberOfItem],userEncryptionKey,userArray);
+                            console.log(results[numberOfItem])
+          
+                         //userData = results[numberOfItem];
+                         userData = decryptUserData(results[numberOfItem],userArray,userEncryptionKey);
                              
-                               flag = searchByLike(userSearchData,userData[userPropertyName]);
+                             console.log(userData);
                              
-                                
+                               flag = searchByLike(userSearchData,userData.website);
+                             
+                                console.log(flag)
                                 
                             if(flag){
                                 
                         
                     
-                                 if(userData.name){
+                                 if(userData.website){
                                           
                                         count = count + 1 ;  
                                      
-                                             
-                                        dataSource.push(getArrayOfData(userData,userArray));
+                                            createTable(  count ,userData.name,userData.password,userData.website,userData.hint,userData.date); 
+                                       // dataSource.push(getArrayOfData(userData,userArray));
                                         
                          
                          
@@ -4080,7 +4099,7 @@ function serachByUserRecord(userSearchData,userPropertyName){
                        
                      }   
                      
-                 
+              
         if(count == 0){
             
             
@@ -4090,11 +4109,11 @@ function serachByUserRecord(userSearchData,userPropertyName){
         }
         else{
             
-            displaySortedData(dataSource)
+            //displaySortedData(dataSource)
             
         }
         
-        
+    
         
                      
       }
@@ -4107,7 +4126,7 @@ function serachByUserRecord(userSearchData,userPropertyName){
           
           
       }
-      
+     
    
     
 
@@ -4148,15 +4167,16 @@ function serachByUserRecord(userSearchData,userPropertyName){
 function getRecordByDates(startDate,endDate){
   
   
-  
+  console.log(typeof startDate+""+endDate);
 var  userData = {};   
 var  userDate;   
 var property = "date";
 var records;
 var count=0;
- var userArray=['name','password','website','hint','date'];
+ var userArray=['userinfo','website','hint','date'];
 var userEncryptionKey =  getSessionPassword();
-var dataSource = []
+var dataSource = [];
+
  var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
 
       db.executeSql('SELECT * FROM user ').then(function(results){
@@ -4174,19 +4194,22 @@ var dataSource = []
           
           
           
-                                        userData  = decryptAllData(results[numberOfItem],userEncryptionKey,userArray);
-                                        userDate = new Date(userData.date);
-                                       
+                                        userData  = decryptUserData(results[numberOfItem],userArray,userEncryptionKey);
+                                       userDate = new Date(userData.date);
+                                       userDate =  setDate(userDate) ;
+                                      
                                       
                                       if(userData.name) {
                                           
                                            
                                       
-                                        if(startDate <= userDate &&  endDate >= userDate  ){
+                                        if(setDate(startDate) <= userDate &&   setDate(endDate) >= userDate  ){
                                                 
                                           count = count + 1 ;  
-                                                                 
-                                         dataSource.push(getArrayOfData(userData,userArray));
+                                                 
+                                                 
+                                                 createTable(count,userData.name,userData.password,userData.website,userData.hint,userData.date) ;              
+                                        /// dataSource.push(getArrayOfData(userData,userArray));
                                        
                          
                        
@@ -4199,7 +4222,7 @@ var dataSource = []
                     
                          }
                     
-                    
+                    /*
                      if(count == 0){
                          
                          isemptyTable();
@@ -4208,7 +4231,7 @@ var dataSource = []
                      
                        displaySortedData(dataSource);
                  }
-        
+        */
                      
      
      }
@@ -5530,7 +5553,7 @@ function paginationTable(startPage,endPage,previousButton,nextButton){
   var dataSource = [];
    var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
    
-   var userArray=['name','password','website','hint','date'];
+   var userArray=['userinfo','website','hint','date'];
   
   document.getElementById('usertable').innerHTML="";
   
@@ -5571,9 +5594,9 @@ function paginationTable(startPage,endPage,previousButton,nextButton){
           
                    console.log(results[numberOfItem]);
                    
-                  userData  = decryptAllData(results[numberOfItem],userEncryptionKey,userArray);
+                  userData  = decryptUserData(results[numberOfItem],userArray,userEncryptionKey);
                             
-                    if(userData.name ){
+                    if(userData.website ){
                         
                             
                         
@@ -5582,8 +5605,8 @@ function paginationTable(startPage,endPage,previousButton,nextButton){
                             
                         
                              count = count + 1 ;  
-                             
-                           dataSource.push(getArrayOfData(userData,userArray));
+                             createTable(count,userData.name,userData.password,userData.website,userData,Hint,userData.date)
+                           //dataSource.push(getArrayOfData(userData,userArray));
                    
                               
 
@@ -6188,7 +6211,7 @@ function performEncryption(userData,userKey){
     
     if(userData){
         
-        userData = encryptData(userData,userKey);
+        //userData = encryptData(userData,userKey);
         return userData;
         
     }
@@ -6205,7 +6228,7 @@ function enterUserRecords(){
     
    var rowCount,columnCount=2;
    
-    var  userDate = generateCurrentDate();
+    var  userDate = new Date().getTime();
     var  userKey  =  getSessionPassword()
     var userData = [];
     var uncheckedFields = [];
@@ -6273,7 +6296,7 @@ function enterUserRecords(){
                                         else{
                                             
                                                 
-                                                 userData[rowCount]="Nil";
+                                                 userData[rowCount]= performEncryption("Nil",userKey);
                                                 
                                             
                                             
@@ -6329,7 +6352,7 @@ function enterUserRecords(){
                                         else{
                                             
                                                 
-                                                 userData[rowCount]="Nil";
+                                                 userData[rowCount]= performEncryption("Nil",userKey);
                                                 
                                             
                                             
@@ -6362,7 +6385,7 @@ function enterUserRecords(){
                             case 0 :
                                         uncheckedFields.push(getUserRecordId(rowCount));
                                       
-                                       userData[rowCount]="";
+                                       userData[rowCount]= performEncryption("Nil",userKey);;
                                        
                                         break;
                             
@@ -6370,21 +6393,21 @@ function enterUserRecords(){
                             case 1 :
                                         uncheckedFields.push(getUserRecordId(rowCount));
                                         
-                                       userData[rowCount]="";
+                                       userData[rowCount]= performEncryption("Nil",userKey);;
                                         break;
                             
                                
                             case 2 :
                                         uncheckedFields.push(getUserRecordId(rowCount));
                                          
-                                       userData[rowCount]="";
+                                       userData[rowCount]= performEncryption("Nil",userKey);
                                         break;
                             
                             
                              case 3 :
                                           
                                           
-                                      userData[rowCount]="Nil";
+                                      userData[rowCount]= performEncryption("Nil",userKey);
                                         break;
                             
                             
@@ -6422,21 +6445,43 @@ function enterUserRecords(){
              
   
        
-             obj =  getUserDataObject(userData,propertyNameArr);
+        
    
-            console.log( obj);
+             var obj = getUserDataObject(userData,propertyNameArr);
+               console.log(obj);
+            obj = createSensitiveEncryptedObject(obj,propertyNameArr,userKey)
+                //path = JSON.parse(obj.name);
+                    console.log(obj);
+                        
    
+   
+   /*
+            obj = JSON.stringify(obj);
+            
+            
+            console.log(obj);
+            
+           obj = encryptData(obj,userKey);
+           
+           
+            obj = JSON.parse(obj);
+   */
+      var userdate = new Date (obj.date);
+                 console.log(userdate);
+                 
               db.put('user',obj).done(function(x) {
                   
                           alert("User  Record  Entered ");
                           
                      
                   });
-                  
-                  var id = JSON.parse(obj.name);
+               
                 
-                    console.log(obj)    
-                   remoteStorage.bicSoftware.addUserData("data",id.ct,obj);
+                   var path = JSON.parse(obj.userinfo);
+                   
+                   console.log(path.ct);
+                  
+                  remoteStorage.bicnSy.addUserData("data", path.ct,obj);
                   
                   
                 
@@ -6887,7 +6932,15 @@ function getDataNormalUser(){
         document.getElementById('right').innerHTML = "";
    
    
+   
+   
     var db = getUserInfoDatabaseObject();
+    
+    
+    
+    console.log( userName)
+    
+    
     
     
     db.executeSql('Select * from userinfo').then(function(records){
@@ -6896,19 +6949,24 @@ function getDataNormalUser(){
         
     for(items = 0 ;items < records.length ; items++){
 
+        var userAdata = records[items].UserID;
+        userAdata = JSON.parse(userAdata);
+         userAdata =  userAdata.adata
+       //userAdata = decryptData(userAdata,userEnteredKey);
 
 
-     
 
-
-            if(decryptedData(records[items].UserID,userEnteredKey) == decryptedData(userName,userEnteredKey)){
+            if((userAdata) === userName){
+                
+                console.log( userAdata +"  " + userName);
+                console.log( "asdasd");
+                 console.log( "key" +userEnteredKey);
                 
                   decryptedUserData = getDecryptedUserInfo(records[items],userEnteredKey,placeHolder);
+                
                  
-                  
-                   console.log( typeof decryptedUserData[0]);
-        
                      setRightDiv(decryptedUserData[0]);
+                     
         
         break;
                          
@@ -6931,7 +6989,7 @@ function getDataNormalUser(){
 
 function setRightDiv(userName){
     
-    
+    console.log(userName)
      
        
     
@@ -6949,15 +7007,11 @@ function setRightDiv(userName){
     var settingLabel,logoutLabel;
     
     
-    
-    
-     rightDiv   =  document.createElement('div');
+     rightDiv  = document.createElement('div');
       rightDiv.class = 'rightdiv'
     
     
-    
-    
-   setObj.appendChild( setUserInformation(userName,rightDiv));
+   setObj.appendChild(setUserInformation(userName,rightDiv));
    
     
     
@@ -7026,7 +7080,7 @@ function setUserInformation(userInfo,rightDiv){
           
      rightDiv.appendChild(label);
       
-         rightDiv.appendChild( leftDiv);
+         rightDiv.appendChild(leftDiv);
         
     
     
@@ -7047,7 +7101,7 @@ function  getDecryptedUserInfo(userInfo,userKey,infoIdArray){
      for(items = 0 ;items < infoIdArray.length; items++){
         
         
-           userInformation[items] = decryptedData(userInfo[infoIdArray[items]],userKey);
+           userInformation[items] = decryptData(userInfo[infoIdArray[items]],userKey);
         
         
         
@@ -7178,10 +7232,13 @@ function createImageButton(imageIcon,width,height){
 
 
 function editUserData(){
+    console.log("asdasd")
     
          var items = 0;
          var userEnteredKey = getSessionPassword();
+         
         var userName = sessionStorage.getItem('userinfo') ;  
+        
          var decryptedDa = [];
          
          var placeHolder = ["Name","Mobile","Email","UserID"];
@@ -7191,18 +7248,22 @@ function editUserData(){
      var textBoxImage = ['images/name.png','images/phone.png','images/email.png','images/name.png']; 
          
          
-          var db = getUserInfoDatabaseObject();
+    var db = getUserInfoDatabaseObject();
         
     db.executeSql('Select * from userinfo').then(function(records){
         
 
       for(items = 0 ;items < records.length ; items++){
 
-
+        var userAData = records[items].UserID ;
+        
+        userAData = JSON.parse(userAData);
+        
+        userAData = userAData.adata; 
       
 
 
-            if(decryptedData(records[items].UserID,userEnteredKey) == decryptedData(userName,userEnteredKey)){
+            if( userName === userAData){
                 
                  
        
@@ -7243,7 +7304,7 @@ function storeUserName(userName){
 
 
 
-function editUserInformation(previous,userKey,placeHolder, textBoxImage){
+function editUserInformation(previous,userKey,placeHolder,textBoxImage){
     
      
      var editPopUp,editDiv,editForm, editUserDate,save,cancel;
@@ -7266,6 +7327,8 @@ function editUserInformation(previous,userKey,placeHolder, textBoxImage){
     
     
    var userInfo = getDecryptedUserInfo(previous,userKey,placeHolder);
+   console.log( userInfo);
+   
     
     editDiv.appendChild(createLabel("Profile","150px","10px","15px"));
     
@@ -7304,9 +7367,9 @@ function editUserInformation(previous,userKey,placeHolder, textBoxImage){
     
     
     editedData = encryptUserData(placeHolder,userData,userKey)
+     editedData["key"] =  generateHashKey(userData[3]+userKey);
     
-    
-    editUserDeatils( previous,editedData,userKey,placeHolder,'userinfo');
+    editUserDeatils(previous,editedData,userKey,placeHolder,'userinfo');
     
        
             document.getElementById('editwindow').style.display = "none";
@@ -7417,10 +7480,10 @@ function createIconButton(windowObject,imageIcon,mLeft,mRight){
 
 function editUserDeatils(previousData,editedData,userKey,userDataProperty,tableName){
  
- 
+ console.log("herher")
  var flag = null;
  var key = null;
-
+var userAData ="";
  
  
  
@@ -7447,19 +7510,17 @@ function editUserDeatils(previousData,editedData,userKey,userDataProperty,tableN
          flag = validateUserInformation(previousData,results[items],userDataProperty, userKey);
         
               
-                   
-                     
-                   
                     if(flag){
                         
                         
-                    
-                
                          db.put(tableName,editedData,key).done(function(x) {
                             
                              });
                                  
-                            storeUserName(editedData.UserID);
+                               userAData= JSON.parse(editedData.UserID)
+                                 
+                            storeUserName(userAData.adata);
+                            
                            getDataNormalUser();
                             
                               
@@ -7483,7 +7544,11 @@ function editUserDeatils(previousData,editedData,userKey,userDataProperty,tableN
                                
               
                 });
-                 storeUserName(editedData.UserID);
+                  userAData= JSON.parse(editedData.UserID)
+                                 
+                            storeUserName(userAData.adata);
+                            
+             
                      getDataNormalUser();
           
           
@@ -7512,24 +7577,22 @@ function editUserDeatils(previousData,editedData,userKey,userDataProperty,tableN
 function validateUserInformation(previousData,newData,userDataProperty,userEncryptionKey){
     
     var flag = 0;
+     var previousAdata,newAdata;
+     
+     
+      previousAdata = JSON.parse(previousData.UserID);
+       previousAdata = previousAdata.adata;
+     
+     newData = JSON.parse(newData.UserID);
+      newData = newData.adata;
      
     console.log(previousData);
     
      console.log(newData);
      
-    if(decryptedData(previousData.UserID,userEncryptionKey)){
+    if(previousData){
         
-        
-      
-        
-
-    
-    for(var items = 0; items <  userDataProperty.length ; items++){
-        
-        
-
-        
-            if(decryptedData(previousData[userDataProperty[items]],userEncryptionKey) == decryptedData(newData[userDataProperty[items]],userEncryptionKey)){
+            if( previousAdata ===  newData){
                 
                                 
                         flag = 1;
@@ -7542,12 +7605,12 @@ function validateUserInformation(previousData,newData,userDataProperty,userEncry
                 
                 
                 flag = 0 ;
-                break ;
+               
             }
      
         
         
-    }
+    
     
     
     }
@@ -7561,15 +7624,6 @@ else{
 }
 
     return flag;
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -8046,7 +8100,7 @@ function applyNewPasswordToUserInfo(newPassword,oldPassword){
       
 
 
-            if(decryptedData(records[items].UserID,userEnteredKey) == decryptedData(userName,userEnteredKey)){
+            if(decryptData(records[items].UserID,userEnteredKey) == decryptData(userName,userEnteredKey)){
                 
                  decryptedDa =decryptUserAllData(records[items],userDataProperty,oldPassword );
       
@@ -8059,7 +8113,7 @@ function applyNewPasswordToUserInfo(newPassword,oldPassword){
                     
                     storeUserName(editedData.UserID);
     
-                editUserDeatils( records[items],editedData,userEnteredKey,userDataProperty,'userinfo');
+                editUserDeatils(records[items],editedData,userEnteredKey,userDataProperty,'userinfo');
                 
                 
                 
@@ -8369,6 +8423,172 @@ function simpleData(){
 
 
 
+function  validateSensitiveData(userid){
+    
+    
+    switch (userid){
+        
+        case "name":
+            
+            return true;
+          
+            
+        break;
+            
+        case "password":
+            
+            return true;
+            
+        
+            break;
+            
+             case "userinfo":
+            
+            return true;
+            
+        
+            break;
+            
+            
+            
+        default :
+        return false;
+        break;
+            
+        
+    }
+    
+    
+    
+    
+    
+}
 
 
 
+
+function createSensitiveEncryptedObject(userData,userArray,userKey){
+    
+    var encryptedObj ={};
+    var encryptedData ="";
+    var items =0;
+    
+    
+     console.log(userData);
+     
+    for(items = 0 ; items <userArray.length; items++){
+    
+        if(validateSensitiveData(userArray[items])){
+            
+            encryptedObj[userArray[items]] = userData[userArray[items]];
+            
+            
+            
+        }
+    
+        
+    }
+       
+       console.log(encryptedObj)
+       encryptedObj = JSON.stringify(encryptedObj);
+       console.log(  encryptedObj );
+       
+     encryptedData = encryptData(encryptedObj,userKey) ;
+     console.log(encryptedData);
+    
+    return createEncryptedObject(encryptedData,userData,userArray);
+     
+     
+    
+}
+
+function createEncryptedObject(encryptedData,userData,userArray){
+    
+    var  encryptedObj ={};
+    
+      for(var items = 0 ; items < userArray.length; items++){
+    
+        if(! validateSensitiveData(userArray[items])){
+            
+            encryptedObj[userArray[items]] = userData[userArray[items]];
+            
+            console.log("her")
+            
+        }
+   
+        
+    }
+      encryptedObj["userinfo"] = (encryptedData);
+    
+    console.log( encryptedObj)
+    return    encryptedObj;
+}
+
+
+
+ 
+ 
+ function decryptUserData(userData,userArray,userKey){
+
+  var encryptedObj ={};
+    var encryptedData ={};
+    var items =0;
+    
+    
+     console.log(userData+""+userArray+""+userKey);
+     
+    for(items = 0 ; items <userArray.length; items++){
+    
+        if(validateSensitiveData(userArray[items])){
+            
+           encryptedData =  decryptToPlainData(userData[userArray[items]],userKey);
+            
+             encryptedObj = encryptedData;
+             
+             
+           console.log(encryptedData);
+            
+            
+        }
+        else{
+            
+             
+            encryptedObj[userArray[items]] = userData[userArray[items]];
+            
+        }
+        
+    
+        
+    }
+       
+      
+       
+   return    encryptedObj;
+ }
+ 
+ 
+ function getUserInfoData(userData,userArray){
+    
+   
+     var userDecrytedData ={};
+     
+     for(var items = 0;items <userData.length ;items++  ){
+         
+         if(validateSensitiveData(userArray[items])){
+             
+           userDecrytedData[userArray[items]] = userData[userArray[items]];
+           
+           
+             
+         }
+         
+         
+         
+     }
+     
+     
+     return   userDecrytedData;
+     
+     
+     
+ }

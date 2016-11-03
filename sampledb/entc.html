@@ -21,35 +21,41 @@
       <script type="text/javascript" src="../sampledb/jsc/ydn.db-dev.js"></script>
    <script type="text/javascript" src="../sampledb/ydn.db-is-sql.js"></script>
    <script type="text/javascript" src="../sampledb/jsc/ydn.db-dev.js"></script>
-   <script type="text/javascript" src="../Crypto/rollups/aes.js"></script>
-   <script type="text/javascript" src="../Crypto/rollups/md5.js"></script>
-    <script type="text/javascript" src="../Crypto/rollups/sha1.js"></script>
-   
-    <script type="text/javascript" src="../sampledb/jquery.tablesorter.js"></script> 
- <script type="text/javascript" src="../sampledb/jquery.dataTables.min.js"></script>
 
+    <script type="text/javascript" src="../sampledb/jquery.tablesorter.js"></script> 
+    
+    
+ <script type="text/javascript" src="../sampledb/jquery.dataTables.min.js"></script>
+ <script type="text/javascript" src="../sampledb/jquery.dataTables.buttons.min.js"></script> 
+ 
    <link rel="stylesheet" type="text/css" href="jquery.dataTables.min.css">
    <link rel="stylesheet" type="text/css" href="dataTables.jqueryui.css">
+   
+ <script type="text/javascript" src="../sampledb/sjcl.js"></script>
+      
+   <script type="text/javascript" src="../sampledb/aes.js"></script>
+     
+   <script type="text/javascript" src="../sampledb/sha256.js"></script>
+ 
 
+ <script type="text/javascript" src="../sampledb/encryption.js"></script>
+  <script type="text/javascript" src="../sampledb/decryption.js"></script>
+  
  <script src="../sampledb/dbobject.js"></script>
   <script src="../sampledb/generateKey.js"></script>
+  
   
   <script src="../sampledb/remoteStorage/remotestorage.js"></script>
 	<script src="../sampledb/remoteStorage/remotestorage-module.js"></script>
   	<script src="../sampledb/remoteStorage/remoteStorageInitilize.js"></script>
- <script type="text/javascript" src="../sampledb/sjcl.js"></script>
-      
-   <script type="text/javascript" src="../sampledb/aes.js"></script>
-      
-   <script type="text/javascript" src="../sampledb/sha256.js"></script>
- 
+
 
   
    <script type="text/javascript" src="../sampledb/datafolder.js"></script>
   
-  
+
    <script type="text/javascript" src="enct.js"></script>
-   
+  <!--   <script type="text/javascript" src="sampleobject.js"></script> -->
   
   
    
@@ -135,10 +141,11 @@
  <div id="demo"></div>
  
  
- 
+ <div class="table-responsive">
+
  
 
-<table id="example" class="display" width="100%">
+<table id="example" class= "table table-inverse " width="100%">
     <tbody id="tbodyid">
     <thead>
             <tr>
@@ -152,13 +159,14 @@
         <tbody>
                </table>
 
-
+  
+</div>
     
     
       
         
  
-     <div id="usertable">  </div>
+     <div id="usertable"  class="table-responsive" >  </div>
     
    
     

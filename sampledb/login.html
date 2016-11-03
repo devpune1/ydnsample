@@ -24,6 +24,7 @@
    <script src="../sampledb/jquery-ui.min.js"></script>
    <script src="../sampledb/jquery.simplePagination.js"></script>
    <script src="../sampledb/laodtooltip.js"></script>
+   <script src="../sampledb/tether.min.js"></script>
    <script src="../sampledb/bootstrap.min.js"></script>
    
    
@@ -40,17 +41,16 @@
   
   
    
-   
+      <script type="text/javascript" src="../sampledb/login.js"></script>
    
    
    
    <link rel="stylesheet" href="bootstrap.min.css" type="text/css"/>
    <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
-   <link rel="stylesheet" type="text/css" href="mobileui.css"> 
+   
   
         
-        
-        <script type="text/javascript" src="../sampledb/login.js"></script>
+       
    
    
    
@@ -60,53 +60,163 @@
         
    
     
-    <body onload= "checkSupport()">
-        
-        <nav class="navbar navbar-inverse ">
-        
-       
- 
-
-        
-        <div class = "loginpage">
-            
-            <div class = "loginformdiv">
-                
-                 <div class="col-sm-4" ><input  name = "loginformdiv" type ="text" data-toggle = "tooltip" title = "Enter User ID Here " placeholder = "Enter User Id Here"/></input></div>
-
-                
-             <div class="col-sm-4" > <input  name = "loginformdiv" type = "password" data-toggle = "tooltip" title = "Enter Password Here " placeholder = "Enter Password Here"/></div>
-
-           
-            
-             <Button id = "login"  class="btn btn-default" onClick = "registerUser(this)" ></Button>
-            
-            <Button id = "signup"    class="btn btn-default " onclick = "registerUser(this)" ></Button>
-            
-            
-            </div>
-             
-           
-            
-        </div>
+    <body>
         
     
-        
-        
-    </nav>
-     
-         <div class="container">
-             <div >
-              
-              <div id = "registerform"> 
-              
-              </div> </div>
-       
-       </div> 
-      
-       
    
-    </body>
+
+            
+            <div class="loginpage"  >
+                
+          
+                <input  type="text"  class = "loginformdiv blinking-cursor form-control focusedInput"  name="loginformdiv" id="InputName" placeholder="Enter User ID" autofocus />
+                        
+                        
+                <input type="password"  class="loginformdiv blinking-cursor form-control focusedInput"  name="loginformdiv" id="InputPassword" placeholder="Enter User Password" />
+                       
+                   
+                   
+                <input  type="button"  id = "login" type="button" class="btn btn-default" onClick = "register(this)" ></input>
+            
+         
+          
+          
+                  <input type="button" id="signup" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="register(this)">   </input>
+
+           
+     </div>
+
+ 
+  
+        
+  
+     
+        
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  
+     <div class="modal-dialog modal-lg">
+
+
+     <div class="modal-content">
+         
+                  <div class="modal-header">
+          
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"  ><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">Registration Page</h4>
+   
+                         </div>
+      
+      <div class="modal-body">
+        
+      <form class = "form-horizontal" role="form"  autocomplete="off" onsubmit="return false">
+            
+            <div class="col-lg-6">
+                
+                
+                <div align="center" class="form-group">
+                   
+                    <label for="InputName">FullName</label>
+                    
+                    <div class="input-group input-group-lg">
+                        
+                        <input type="text" class="form-control input-group-lg" name="InputName" id="fullname" placeholder="User Name should contain string only with more than 5 chararacter" pattern = "^([a-zA-Z]*((\s)))+[a-zA-Z]*$" title="Please enter string only" required>
+                         
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        
+                    </div>
+                </div>
+                
+                <div align="center" class="form-group">
+                    <label for="InputEmail">UserID</label>
+                     <div class="input-group input-group-lg">
+                        <input type="text" class="form-control input-group-lg" name="InputName" id="userid" placeholder="User ID should combination of string and number"  pattern="^[a-zA-Z0-9]+(?:[a-zA-Z0-9]+)*$" title="Please enter string only" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                
+                
+                <div align="center" class="form-group">
+                    
+                    <label for="InputName">MobileNumber</label>
+                    
+                    <div class="input-group input-group-lg">
+                        
+                        <input type="text" class="form-control input-group-lg" name="InputName" id="mobileno" placeholder="Mobile Number should be 10-Digit only " pattern="^[978]\d{9}$" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                   
+                    </div>
+               
+                </div>
+               
+               
+                 <div align="center"  class="form-group">
+                     
+                    <label for="InputEmail">Email</label>
+                   
+                    <div class="input-group input-group-lg input-prepend">
+                        
+                        <input type="email" class="form-control input-group-lg" id="email" name="InputName" placeholder="Email Address must contain be eg:xyz@abc.com"  required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                    </div>
+                
+               </div>
+               
+               
+               
+                 <div align="center" class="form-group">
+                    <label for="InputEmail">BirthDate</label>
+                    <div class="input-group input-group-lg" >
+                        <input type="text" class="form-control input-group-lg " name="InputName"  id="userdate" placeholder="Enter birth date " required>
+                         <span class="input-group-addon text-pointer">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                </div>
+                
+                  <div  align="center" class="form-group">
+                    <label for="InputEmail">Password </label>
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control input-group-lg" name="InputName" id="password" placeholder="Password be more than 8-digit only " pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?!.*\s).{8,}$" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+               
+                 <div align="center" class="form-group">
+                    <label for="InputEmail">ConfirmationPassword</label>
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control input-group-lg " name="InputName" id="confirm" placeholder="Enter Confirm Password"  pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?!.*\s).{8,}" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+               
+               
+               
+              </div>
+              
+         
+       </div>
+        
+      
+      
+       <div class="modal-footer">
+          
+       <input   type = "submit" name="submit" id="save" value="Submit"  onclick="signUp()" class="btn default btn-info pull-right"></input>
+       <input type="button" name="close" id="exit"  value="Close"  onclick="getClear()" class="btn btn-default" />
+      </div>
     
+     </form>
+    
+    </div>
+
+  </div>
+  
+</div>
+
+
+<div id="registerform">
+    <div >
+       
+    </div>
+
+</body>
     
 </html>

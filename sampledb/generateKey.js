@@ -34,7 +34,7 @@ function generateEncryptedKey(userEnteredKey ){
     
                 newUserKey =  newUserKey.join('');
        
-             newUserKey =  generateHashKey( newUserKey)
+             newUserKey =  generateHashKey( newUserKey);
           
                 newUserKey = newUserKey.toString();
           
@@ -50,18 +50,5 @@ function generateEncryptedKey(userEnteredKey ){
    
 
 
-function generateHashKey(userKey){
-    
-      var hashedKey=null;
-    
-    
-    
-     hashedKey = CryptoJS.MD5(userKey);
-    
-     
-    return hashedKey;
-    
-
-}
 
 
