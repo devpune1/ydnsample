@@ -5740,12 +5740,16 @@ if (typeof XMLHttpRequest === 'undefined') {
     var scope = this.access.scopeParameter;
 
     var redirectUri = global.cordova ?
+     
+     
       cordovaRedirectUri :
+      
+      
       String(RemoteStorage.Authorize.getLocation());
 
     var clientId = redirectUri.match(/^(https?:\/\/[^\/]+)/)[0];
 
-    RemoteStorage.Authorize(authURL, scope, redirectUri, clientId);
+    RemoteStorage.Authorize(authURL, scope, "file:///home/abhishek/Desktop/workspace/sampledb/entc.html", clientId);
   };
 
   /**

@@ -485,22 +485,25 @@ var dataSource = []
           
           userRow=document.createElement('tr');
   
-          deleteRecord = document.createElement('img');
+          deleteRecord = document.createElement('input');
+           deleteRecord.type="button";
           deleteRecord.id = 'deletebutton';
-              deleteRecord.width = '30';
-          
-          deleteRecord.setAttribute('src', 'images/remove.png');
+             deleteRecord.width = '30';
+            //  deleteRecord.value= 'delete';
+         // deleteRecord.setAttribute('src', 'images/remove.png');
      
          
     
           
                
              
-          editRecord = document.createElement('img');
+          editRecord = document.createElement('input');
+            editRecord.type="button";
           editRecord.id= 'editbutton';
-          editRecord.setAttribute('src', 'images/edit.png');
+          // editRecord.value= 'edit';
+        //  editRecord.setAttribute('src', 'images/edit.png');
           
-           deleteRecord.style.background = "edit.png" ;
+          deleteRecord.style.background = "edit.png" ;
  
 
           userRowNumber =document.createElement('td');
@@ -713,7 +716,7 @@ function resetStaticCount(){
 
 
 
-function deleteData(userDate) {
+function deleteData(userData) {
     
    
    
@@ -728,10 +731,11 @@ function deleteData(userDate) {
                    
                     if(flag){
                         
-                     //  path = JSON.parse(userData[numberOfItems].userinfo);
-                   // remoteStorage.bicnSy.removeUserData(path.ct);
+                 //path = JSON.parse(userRemoteID);
+                 
+                   remoteStorage.bicnSyst.removeUserData(userData);
                        
-                      deleteRecord("user",userDate);
+                      deleteRecord("user",userData);
                      
                       
                     }
@@ -1047,7 +1051,7 @@ function displaySortedData(dataSource,timestamp){
            
        generateEditForm(dataSelected[0],dataSelected[1],dataSelected[2],dataSelected[3],userKey);
      
-      remoteStorage.bic.removeData(previoususerData.userName);
+      //remoteStorage.bicnSystremoveData(previoususerData.userName);
             
    dataSelected.length = 0;
  
@@ -1239,10 +1243,8 @@ console.log(editedData);
 
   if(flag){
                           
-                          
-                          //path = JSON.parse(editedData.userinfo);
-                          //console.log(editedData.userinfo)
-                         //remoteStorage.bicnSy.removeUserData(path.ct);
+                         
+                    remoteStorage.bicnSyst.removeUserData(previousData.date);
                           console.log(previousData )
                         console.log(editedData)
                         performEditing(editedData,tableName);
@@ -1253,7 +1255,7 @@ console.log(editedData);
                 }
         
      
-          
+          //reloadTable();
        
           
           
@@ -1299,7 +1301,7 @@ console.log(editedData);
                           var userdate = new Date (obj.date).getTime();
                  console.log(userdate);
                                path = JSON.parse(results[items].userinfo);
-                             remoteStorage.bicnSy.removeUserData(path.ct);
+                             remoteStorage.bicnSyst.removeUserData(path.ct);
                                performEditing(editedData,key,tableName);
                            
                 
@@ -1525,9 +1527,9 @@ userData[rowCount] =  userDate;
              
             obj = createSensitiveEncryptedObject(obj,propertyNameArr,userKey)
             
-                //path = JSON.parse(obj.userinfo);
               
-             //remoteStorage.bicnSy.editUserData(path.ct,obj);
+              
+             remoteStorage.bicnSyst.editUserData(obj.date,obj);
                         
    
               db.put(tableName,obj).done(function(x) {
@@ -6470,18 +6472,11 @@ function enterUserRecords(){
                  console.log(userdate);
                  
               db.put('user',obj).done(function(x) {
-                  
-                          alert("User  Record  Entered ");
+                  reloadTable();
                           
                      
                   });
-               
-                
-                   var path = JSON.parse(obj.userinfo);
-                   
-                   console.log(path.ct);
-                  
-                  remoteStorage.bicnSy.addUserData("data", path.ct,obj);
+              remoteStorage.bicnSyst.addUserData("Data",obj.date,obj);
                   
                   
                 

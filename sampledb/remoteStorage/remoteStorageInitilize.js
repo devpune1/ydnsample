@@ -1,23 +1,27 @@
 function loadRemoteStorageData(){
-    
+     var userName = sessionStorage.getItem('userinfo') ;
      var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
+   //var  $w = new WebFinger();
+
+
+   // $w.setOption('verify', false);
     
      RemoteStorage.config.changeEvents.window = false;
 
 
-    remoteStorage.access.claim('bicnSy','rw');
+    remoteStorage.access.claim('bicnSyst','rw');
 
 
     remoteStorage.displayWidget();
 
-    remoteStorage.bicnSy.init();
-
-   remoteStorage.bicnSy.getUserData().then(function(userData){
+    remoteStorage.bicnSyst.init();
+//remoteStorage.setCordovaRedirectUri('file://'
+   remoteStorage.bicnSyst.getUserData().then(function(userData){
         
         for(var items in userData){
             
           
-              // removeDuplicate(userData[items]);
+              //removeDuplicate(userData[items]);
             
             
             
@@ -143,3 +147,26 @@ function loadRemoteStorageData(){
         
         
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

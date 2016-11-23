@@ -263,15 +263,23 @@ background:lightblue;
 }
 
 #save{
-    
+    display :block;
    width:90px;
     height:40px;
-   margin-top:40px;
+   margin-top:0px;
    margin-left:120px;
     background: url('images/save.png')  center no-repeat white;  
   
 }
-
+#cancel{
+    
+     
+    width:90px;
+    height:40px;
+    margin-top:-60px;
+   margin-left:250px;
+     background: url('images/cancel.png')  center no-repeat white;  
+}
 #search{
     
    width:90px;
@@ -280,15 +288,7 @@ background:lightblue;
    margin-left:120px;
    background: url('images/search.png')  center no-repeat white;  
 }
-#cancel{
-    
-    
-    width:90px;
-    height:40px;
-    margin-top:-100px;
-    margin-left:20px;
-     background: url('images/cancel.png')  center no-repeat white;  
-}
+
 
 
 
@@ -324,27 +324,20 @@ background:lightblue;
 
 
 
-.deleteButton{
- 
-  width:30px;
-  height:30px;
-  margin-left: 20px;
-
- background: url('images/delete.png')  center no-repeat white;  
-
-}
-
-
-.editButton{
- 
-  width:30px;
-  height:30px;
-
-  margin-left: 20px;
-  background: url('images/edit.png')  center no-repeat white;  
-
-}
-
+ #deletebutton{
+      
+      width: 30px;
+      height:30px;
+       background-Image: url('images/remove.png') ;
+      	background-size: 30px 30px;
+  }
+   #editbutton{
+      
+    width: 30px;
+      height:30px;
+        background-Image: url('images/edit.png') ;
+      	background-size: 30px 30px;
+  }
 
 
 #userdetail{
@@ -352,7 +345,7 @@ background:lightblue;
     background-color: white;
     border: 5px solid black;
     width:610px;
-    height:430px;
+    height:500px;
     
       margin-top:0px;
     margin-left:300px; 
@@ -371,7 +364,7 @@ background:lightblue;
       #userform{
     
     width:510px;
-    height:350px;
+    height:400px;
     background-color: lightblue;
     margin-left:50px;
     margin-right:50px;
@@ -682,6 +675,13 @@ tr.details td.details-control {
  
  
 }
+
+
+
+
+
+
+
 
 #remotestorage-widget {
    

@@ -5,11 +5,11 @@
 
 /* Creating remote storage module where we define data type,descriptio,type which tell s type of data added and also define  fucntion */
 
+ 
 
-
-RemoteStorage.defineModule('bicnSy', function(privateClient) {
+RemoteStorage.defineModule('bicnSyst', function(privateClient) {
     
-  privateClient.declareType('UserData', {
+  privateClient.declareType('Data', {
     
     type: 'object',
     description : 'User Data',
@@ -55,7 +55,7 @@ RemoteStorage.defineModule('bicnSy', function(privateClient) {
         
        
        
-        return privateClient.storeObject('UserData',Id,userData);
+        return privateClient.storeObject('Data',Id,userData);
         
         
       },
@@ -65,7 +65,7 @@ RemoteStorage.defineModule('bicnSy', function(privateClient) {
         
        userId = userId.toString().replace(/\s|\//g, '-');
       
-         return privateClient.storeObject('UserData',userId,userData);
+         return privateClient.storeObject('Data',userId,userData);
          
       },
 

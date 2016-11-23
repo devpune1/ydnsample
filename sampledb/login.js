@@ -1557,7 +1557,7 @@ db.executeSql('Select * from userinfo').then(function(records){
      console.log(name);
       
       
-      if(name.length){
+      if(name){
       
      //console.log(validateCredential(userName,name));
       
@@ -1722,37 +1722,6 @@ function getRandowmName(userName){
 
 
 
-function validateUserId(password){
-    
-
-var passPassword=/^[a-zA-Z0-9]+(?:[a-zA-Z0-9]+)*$/;
-
-
-    
-if(passPassword.test(password) && isFiledEmpty(password)  ){
-    
-    
-    
-    return true
-  
-    
-}
-
-else{
-    
-    
-    return false;
-    
-    
-    
-}
-
-
-    
-}
-
-
-
 function addLoader(){
     
     
@@ -1818,3 +1787,34 @@ function validateConfirmPassword(Password,confirmPassword){
  
 
  
+
+function validateUserId(password){
+    
+
+var passPassword=/^[a-zA-Z0-9]+(?:[a-zA-Z0-9]+)*$/;
+
+
+    
+if(passPassword.test(password) && isFiledEmpty(password)  ){
+    
+    
+    
+    return true
+  
+    
+}
+
+else{
+    
+    
+    return false;
+    
+    
+    
+}
+
+
+    
+}
+
+
