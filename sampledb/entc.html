@@ -3,128 +3,132 @@
 <html>
     <title>USER FORM</title>
   <head>
-      
+
     <meta charset="utf-8">
-    
+
       <script  src="remotestorage.js"></script>
     <script src="../sampledb/jquery.js"></script>
     <script src="../sampledb/jquery-ui.js"></script>
     <script src="../sampledb/jquery-ui.min.js"></script>
     <script src="../sampledb/jquery.simplePagination.js"></script>
-    
-    
+
+
   <script src="../sampledb/bootstrap.min.js"></script>
 
    <script type="text/javascript" src="../sampledb/ydn.db-is-core-e-cur-dev.js"></script>
-    
-   
+
+
       <script type="text/javascript" src="../sampledb/jsc/ydn.db-dev.js"></script>
    <script type="text/javascript" src="../sampledb/ydn.db-is-sql.js"></script>
    <script type="text/javascript" src="../sampledb/jsc/ydn.db-dev.js"></script>
 
-    <script type="text/javascript" src="../sampledb/jquery.tablesorter.js"></script> 
-    
-    
+    <script type="text/javascript" src="../sampledb/jquery.tablesorter.js"></script>
+
+
  <script type="text/javascript" src="../sampledb/jquery.dataTables.min.js"></script>
- <script type="text/javascript" src="../sampledb/jquery.dataTables.buttons.min.js"></script> 
- 
+ <script type="text/javascript" src="../sampledb/jquery.dataTables.buttons.min.js"></script>
+
    <link rel="stylesheet" type="text/css" href="jquery.dataTables.min.css">
    <link rel="stylesheet" type="text/css" href="dataTables.jqueryui.css">
-   
+
  <script type="text/javascript" src="../sampledb/sjcl.js"></script>
-      
+
    <script type="text/javascript" src="../sampledb/aes.js"></script>
-     
+
    <script type="text/javascript" src="../sampledb/sha256.js"></script>
- 
+
 
  <script type="text/javascript" src="../sampledb/encryption.js"></script>
   <script type="text/javascript" src="../sampledb/decryption.js"></script>
-  
+
  <script src="../sampledb/dbobject.js"></script>
   <script src="../sampledb/generateKey.js"></script>
-  
-  
+
+
   <script src="../sampledb/remoteStorage/remotestorage.js"></script>
 	<script src="../sampledb/remoteStorage/remotestorage-module.js"></script>
   	<script src="../sampledb/remoteStorage/remoteStorageInitilize.js"></script>
 
 
-  
-   <script type="text/javascript" src="../sampledb/datafolder.js"></script>
-  
 
-   <script type="text/javascript" src="enct.js"></script>
+   <script type="text/javascript" src="../sampledb/datafolder.js"></script>
+
+
+
   <!--   <script type="text/javascript" src="sampleobject.js"></script> -->
-  
-  
-   
+
+
+
   <link rel="stylesheet" href="bootstrap.min.css" type="text/css"/>
    <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
   <link rel="stylesheet" type="text/css" href="enct.css">
    <link rel="stylesheet" type="text/css" href="jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
   <link rel="stylesheet" type="text/css" href="userinterface.css">
-    
-  
+
+
    <link rel="stylesheet" type="text/css" href="responsive.dataTables.min.css">
-   
-  
+
+
   </head>
-   
-    
+
+
   <body onload= "checkRefresh()">
 
 
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      
-      
-    <form>
-        
-        
-        <div  class="dropup" id = "right"></div>
-  
-    
-    <div id="userdetail" >
-    
-     <div id="userform">
-    
-  
-    
-   
-     <input type = "text" id = "username" placeholder = "Enter  Name" ></input>
-    
-     <input type = "text" id = "userpassword" placeholder = "Enter Password" ></input>
-    
-     <input type = "text"  id = "userwebsite" placeholder = "Enter Website Name" ></input>
-   
-     <input type = "text" id = "userhint" placeholder = "Enter Hint" ></input>
-    
-    
-     <input type="button"  id="add" onclick="addUserRecords()"/>
-            
-     <input type="button"  id="get" onclick=" searchUserByDate()"/>
 
-     
-      <input type="button" id="getall" onclick="getRecord()"/>
-      
-     <input type="button" id="clear"  onclick="dbClear()"></input>    
-      
-     <input type="button" id="setting"  onclick="userSetting()" ></input>    
-         
-      
+
+    <form>
+
+
+        <div  class="dropup" id = "right"></div>
+
+
+    <div id="userdetail" >
+
+     <div id="userform">
+
+
+
+
+     <input type = "text" id = "username" placeholder = "Enter  Name" ></input>
+
+     <input type = "text" id = "userpassword" placeholder = "Enter Password" ></input>
+
+     <input type = "text"  id = "userwebsite" placeholder = "Enter Website Name" ></input>
+
+     <input type = "text" id = "userhint" placeholder = "Enter Hint" ></input>
+
+
+     <input type="button"  id="add" /></input>
+
+     <input type="button"  id="get" /></input>
+
+
+      <input type="button" id="getall"/></input>
+
+     <input type="button" id="clear"  ></input>
+
+     <input type="button" id="setting"  ></input>
+
+    <input type="button" id="offline" ></input>
+
+    <input type="button" id="online" >Online</input>
+
+
     </div>
 
 
-</div>   
+</div>
 
 
 
 
 
-    
-    
+
+
 
 
 
@@ -133,67 +137,70 @@
 
 <div>
 
-  <h1> <font size="20"> Results : <div id="matchresult"> <div></font> </h1> 
-        
+  <h1> <font size="20"> Results : <div id="matchresult"> <div></font> </h1>
+
          <div id="listing"></div>
-    
+
     </div>
 
  <div id="demo"></div>
- 
+
 
  <div class="table-responsive">
 
- 
+
 
 <table id="example" class= "table table-inverse " width="100%">
     <tbody id="tbodyid">
     <thead>
             <tr>
-               
+
             </tr>
         </thead>
-        
+
         </tbody>
-         
-         
-         
+
+
+
                </table>
 
-  
+
 </div>
-    
-    
-      
-        
- 
+
+
+
+
+
      <div id="usertable"  class="table-responsive" >  </div>
-    
-   
-    
+
+
+
     <div id="editwindow" >
-        
+
     <div id="editdiv"  >
 
-       
+
        </div>
     </div>
     </div>
-   
-    
-   
+
+
+
 <div id="searchwindow">
-        
+
     <div id="searchdiv">
-            
-         
-    
+
+
+
     </div>
-    </div>      
-    
-    
-       
+    </div>
+
+
+
         </form>
-        
+
   </body>
+   <script type="text/javascript" src="enct.js"></script>
+
+
 </html>

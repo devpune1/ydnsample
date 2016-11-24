@@ -21,32 +21,32 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-family: inherit;
 	vertical-align: baseline;
 }
-  
-   
+
+
   #add{
-     
+
     width:90px;
     height:50px;
     margin-top:40px;
      margin-left:10px;
      display:block;
-    background: url('images/add.png')  center no-repeat white;  
+    background: url('images/add.png')  center no-repeat white;
 }
 
 
 
   #get{
-     
+
    width:90px;
     height:50px;
    margin-top:-50px;
      margin-left:110px;
      display:block;
-  background: url('images/search.png')  center no-repeat white;  
+  background: url('images/search.png')  center no-repeat white;
 }
 
   #getall{
-     
+
    width:90px;
     height:50px;
    margin-top:-50px;
@@ -56,7 +56,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
  #clear{
-     
+
    width:90px;
     height:50px;
    margin-top:-50px;
@@ -66,134 +66,134 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
  #setting{
-    
-    
-    
-    
-    
+
+
+
+
+
     width:90px;
     height:50px;
     margin-top:-50px;
     margin-left:410px;
     display : block;
-     background: url('images/settings.png')  center no-repeat white;  
+     background: url('images/settings.png')  center no-repeat white;
    }
 
  #settingid{
 
-    
+
     width:90px;
     height:50px;
     margin-top:-50px;
     margin-left:610px;
     display : block;
-     background: url('images/settings.png')  center no-repeat white;  
-  
+     background: url('images/settings.png')  center no-repeat white;
+
    }
 
 #editpage{
-    
-      
-   
+
+
+
 position :absolute;
   margin-top:5px;
   margin-left:170px;
-  
+
 }
 
 #namelabel{
-    
-      
-    
+
+
+
 position :absolute;
   margin-top:50px;
   margin-left:10px;
-  
+
 }
 
 #passwordlabel{
-    
-      
-    
+
+
+
 position :absolute;
   margin-top:120px;
   margin-left:-325px;
-  
+
 }
 #websitelabel{
-    
-      
-    
+
+
+
 position :absolute;
   margin-top:100px;
   margin-left:-325px;
-  
+
 }
 
 #hintlabel{
-    
-      
-    
+
+
+
 position :absolute;
    margin-top:100px;
   margin-left:-325px;
-  
-  
+
+
 }
 
 
 
 
 #username{
-    
-      
+
+
       width:200px;
     height:30px;
   margin-top:40px;
   margin-left:150px;
-  
+
 }
 
 #userpassword{
-    
+
     width:200px;
     height:30px;
     margin-top:20px;
     margin-left:150px;
- 
+
 }
 
 #userwebsite{
-   
+
       width:200px;
     height:30px;
      margin-top:20px;
    margin-left:150px;
-  
+
 }
 
 
 #userhint{
-   
+
     width:200px;
     height:30px;
     margin-top:20px;
     margin-left:150px;
- 
+
 }
 
 
 
 
 
-.ui-datepicker { 
- 
+.ui-datepicker {
+
  font-size : 15 px;
 
  background: white;
  border: 1px solid #555;
  color: black;
- 
+
 }
 
 
@@ -206,15 +206,15 @@ position :absolute;
 margin-left: 50px;
 	padding: 0px;
 	margin: 0px;
-	
-	
+
+
 	}
 
 
 #right{
- 
-  width:100%; 
- height: 150px; 
+
+  width:100%;
+ height: 150px;
 background:lightblue;
  border: 2px  solid lightgrey;
 
@@ -225,41 +225,41 @@ background:lightblue;
 
 
 #name{
-    
-      
+
+
       width:200px;
     height:30px;
   margin-top:40px;
   margin-left:120px;
-  
+
 }
 
 #password{
-    
+
     width:200px;
     height:30px;
     margin-top:20px;
     margin-left:120px;
-  
+
 }
 
 #website{
-   
+
       width:200px;
     height:30px;
      margin-top:20px;
  margin-left:120px;
-  
+
 }
 
 
 #hint{
-   
+
     width:200px;
     height:30px;
     margin-top:20px;
     margin-left:120px;
-  
+
 }
 
 #save{
@@ -268,71 +268,71 @@ background:lightblue;
     height:40px;
    margin-top:0px;
    margin-left:120px;
-    background: url('images/save.png')  center no-repeat white;  
-  
+    background: url('images/save.png')  center no-repeat white;
+
 }
 #cancel{
-    
-     
+
+
     width:90px;
     height:40px;
     margin-top:-60px;
    margin-left:250px;
-     background: url('images/cancel.png')  center no-repeat white;  
+     background: url('images/cancel.png')  center no-repeat white;
 }
 #search{
-    
+
    width:90px;
     height:40px;
    margin-top:40px;
    margin-left:120px;
-   background: url('images/search.png')  center no-repeat white;  
+   background: url('images/search.png')  center no-repeat white;
 }
 
 
 
 
 #subform{
- 
- 
+
+
  top : 100px;
 }
 
 
 #cancel : hover{
- 
+
  background-color: lightgrey;
 }
 
 
 #add : hover{
- 
+
  background-color: lightgrey;
 }
 
 
 #get: hover{
- 
+
  background-color: lightgrey;
 }
 
 
 #getAll : hover{
- 
+
  background-color: grey;
 }
 
 
 
  #deletebutton{
-      
+
       width: 30px;
       height:30px;
        background-Image: url('images/remove.png') ;
       	background-size: 30px 30px;
   }
    #editbutton{
-      
+
     width: 30px;
       height:30px;
         background-Image: url('images/edit.png') ;
@@ -341,28 +341,28 @@ background:lightblue;
 
 
 #userdetail{
-   
+
     background-color: white;
     border: 5px solid black;
     width:610px;
     height:500px;
-    
+
       margin-top:0px;
-    margin-left:300px; 
- 
+    margin-left:300px;
+
     margin-bottom:50px;
-   
+
     font-size: 25px ;
 	   font-style: normal;
 	   font-variant: normal;
 	   font-weight: 500;
     display : block;
- } 
- 
- 
-  
+ }
+
+
+
       #userform{
-    
+
     width:510px;
     height:400px;
     background-color: lightblue;
@@ -375,115 +375,115 @@ background:lightblue;
 	font-variant: normal;
 	font-weight: 500;
 }
-   
-   
+
+
    ul.pagination li a {
     color: black;
     float: left;
     padding: 8px;
     text-decoration: none;
 }
-   
-   
-   
+
+
+
    #usertable{
-    
+
      margin-bottom: 200px;
-    
-    
+
+
    }
-   
-    
+
+
  table{
-       
+
 	 table-layout: fixed;
     border-collapse: collapse;
-     
+
      width: 100%;
-     
+
      padding : 8px;
      text-align: left;
      border-style:solid;
-    
+
       margin-right: 100px;
        margin-left: 0px;
-       
-      
-      
+
+
+
       font-family: Arial;
       overflow:hidden;
 }
 
 
 #startdate{
- 
+
  width : 200px;
  height : 40px;
   margin-left: 100px;
- 
-  
- 
+
+
+
 }
 
 
 #enddate{
- 
+
  width : 200px;
  height : 40px;
- 
+
   margin-left: 200px;
- 
-  
- 
+
+
+
 }
 
  tr:hover {background-color: #ddd}
-    
 
- 
- 
+
+
+
  td{
-    
-  
+
+
     width:0px;
     border: 1px solid  #ddd;
     word-wrap: break-word;
     font-family: Arial;
-    
+
     font-size: 25px ;
     font-style: normal;
     	font-variant: normal;
 	     font-weight: normal;
-    
+
    padding: 2px;
     white-space : nowrap;
     text-align:left;
-    
+
 }
   #headertable th{
-    
-   
+
+
      width:0px;
     border: 1px solid  #ddd ;
-    
+
     font-family: Arial;
-    
+
     font-size: 25px ;
     font-style: normal;
 
     padding: 2px;
     white-space : nowrap;
     text-align:left;
-    
+
     background-color: lightblue;
     color: black;
-    
+
 }
-   
-  
-   
+
+
+
  #editwindow{
-     
+
            width:100%;
            height:100%;
            opacity:.95;
@@ -493,35 +493,35 @@ background:lightblue;
             position:fixed;
             background-color:grey;
             overflow:auto
- }  
-   
-   
+ }
+
+
   #editdiv{
-      
+
           position:absolute;
            left:50%;
            top:17%;
            margin-left:-202px;
-    
-    
+
+
            border-style :solid;
            border-width :5px;
            background-color:lightblue;
            width :400px;
            height:400px;
-           
+
             font-family: Arial;
             font-size: 17px ;
 	        font-style: normal;
 	        font-variant: normal;
 	        font-weight: 500;
-           
-      
-  } 
-   
-     
+
+
+  }
+
+
  #searchwindow{
-     
+
            width:100%;
            height:100%;
            opacity:.95;
@@ -531,30 +531,30 @@ background:lightblue;
             position:fixed;
             background-color:grey;
             overflow:auto
- }  
-   
-   
+ }
+
+
   #searchdiv{
-      
+
           position:absolute;
            left:60%;
            top:17%;
            margin-left:-202px;
-    
-    
+
+
            border-style :solid;
            border-width :5px;
            background-color:#9933FF;
            width :400px;
            height:400px;
-      
-  } 
-   
-   
-   
- 
+
+  }
+
+
+
+
 input[type='checkbox'] {
-  
+
     width:20px;
     height:20px;
     background:white;
@@ -563,9 +563,9 @@ input[type='checkbox'] {
 }
 
 #demo{
- 
+
                color: black;
-                font-weight: bold;        
+                font-weight: bold;
                 text-decoration: underline;
                 cursor: pointer;
                 display: inline;
@@ -576,68 +576,77 @@ input[type='checkbox'] {
 }
 
 #pagingbutton:hover {
- 
+
  background-color: lightblue;
- 
+
 }
 
 
- 
-   
+
+
    #userrightname{
        position: relative;
        margin-left:1070px;
       font-size: 20px;
-        
-       
+
+
    }
-   
+
 
 
 #usericon{
- 
+
      width:100px;
     height:80px;
     margin-left:1150px;
-     background: url('images/usericon.png') center no-repeat white;  
+     background: url('images/usericon.png') center no-repeat white;
     background-repeat: no-repeat ;
    background-size:100px 80px;
    padding : 50px;
-   
+
 }
 
 #settings{
 
-     background: url('images/setting.png') center no-repeat white ;  
+     background: url('images/setting.png') center no-repeat white ;
 }
 
+#online{
+
+     background: url('images/online.png') center no-repeat white ;
+}
+
+#offline{
+
+     background: url('images/offline.png') center no-repeat white ;
+}
 
 #logout{
-    
+
 
      background: url('images/logout.png') center no-repeat white;
 }
 
 
 #sort {
- 
+
  width : 60px;
  height:  20px;
  margin-left : 80%;
  top : 220px;
  display: block;
- 
+
 }
 
 
 
 
 #example{
- 
+
  background: url("images/sort_both.png") no-repeat center right;
  background: url("images/sort_asc.png") no-repeat center right;
  background: url("images/sort_desc.png") no-repeat center right;
- 
+
 }
 
 td.details-control {
@@ -665,15 +674,15 @@ tr.details td.details-control {
 }
 
 .modal-content {
- 
+
     background-color: #fefefe;
     margin:20px ; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 
- 
- 
+
+
 }
 
 
@@ -684,17 +693,16 @@ tr.details td.details-control {
 
 
 #remotestorage-widget {
-   
+
    top    : auto !important;
     right  : 15px !important;
     bottom : 80px !important;
 
-  
-     
-   
+
+
+
 }
 
  .remotestorage-state-connected {
         bottom: 40px !important;
     }
-  
