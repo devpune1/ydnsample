@@ -7828,7 +7828,7 @@ function callSelectedOption(choice){
 
          alert("Successfully Logged Out ");
 
-             window.location.href ="../sampledb/login.html";
+             window.location.href ="../sampledb/index.html";
 
 
 
@@ -8616,7 +8616,7 @@ function goOffline(){
 
   document.getElementById('offline').style.display ="none";
   document.getElementById('online').style.display ="block";
-  
+
 
 }
 function goOnline(){
