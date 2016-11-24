@@ -8597,19 +8597,33 @@ function createEncryptedObject(encryptedData,userData,userArray){
   document.getElementById('getall').onclick = getRecord ;
   document.getElementById('setting').onclick = userSetting ;
   document.getElementById('clear').onclick = dbClear ;
-  document.getElementById('offline').onclick = goOffline ;
-  document.getElementById('online').onclick = goOnline ;
+
+  if(navigator.Online){
+      document.getElementById('offline').style.display ="block";
+      document.getElementById('offline').onclick = goOffline ;
+
+  }
+  else{
+    document.getElementById('online').style.display ="block";
+    document.getElementById('online').onclick = goOnline ;
+
+  }
 
 })();
 
 
 function goOffline(){
 
-alert("offline")
+  document.getElementById('offline').style.display ="none";
+  document.getElementById('online').style.display ="block";
+  
 
 }
 function goOnline(){
 
-alert("online")
+  document.getElementById('online').style.display ="none";
+  document.getElementById('offline').style.display ="block";
+    //document.getElementById('online').onclick = goOnline ;
+
 
 }

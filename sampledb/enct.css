@@ -611,14 +611,33 @@ input[type='checkbox'] {
      background: url('images/setting.png') center no-repeat white ;
 }
 
-#online{
+#connection{
+	margin-top:0px;
+	 margin-left:10px;
 
-     background: url('images/online.png') center no-repeat white ;
+
 }
 
 #offline{
-
+	width:90px;
+	height:50px;
+	margin-top:20px;
+	 margin-left:10px;
+	 display:block;
      background: url('images/offline.png') center no-repeat white ;
+		 display: none;
+}
+
+#online{
+
+	width:90px;
+	height:50px;
+	margin-top:20px;
+	 margin-left:0px;
+	 display:block;
+     background: url('images/online.png') center no-repeat white ;
+display: none;
+
 }
 
 #logout{
