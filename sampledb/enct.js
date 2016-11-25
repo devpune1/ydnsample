@@ -8597,6 +8597,9 @@ function createEncryptedObject(encryptedData,userData,userArray){
   document.getElementById('getall').onclick = getRecord ;
   document.getElementById('setting').onclick = userSetting ;
   document.getElementById('clear').onclick = dbClear ;
+  localStorage.setItem("localHostUrl", document.URL);
+  localStorage.setItem("webUrl","https://preview.c9users.io/devpune1/ydnsampledatabase/sampledb/login.html");
+
 
   if(navigator.Online){
       document.getElementById('offline').style.display ="block";
@@ -8614,6 +8617,8 @@ function createEncryptedObject(encryptedData,userData,userArray){
 
 function goOffline(){
 
+
+
   document.getElementById('offline').style.display ="none";
   document.getElementById('online').style.display ="block";
 
@@ -8621,6 +8626,10 @@ function goOffline(){
 }
 function goOnline(){
 
+  var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
+  db.close();
+
+  window.location.href = localStorage.getItem("webUrl");
   document.getElementById('online').style.display ="none";
   document.getElementById('offline').style.display ="block";
     //document.getElementById('online').onclick = goOnline ;
