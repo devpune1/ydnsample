@@ -8598,7 +8598,7 @@ function createEncryptedObject(encryptedData,userData,userArray){
   document.getElementById('setting').onclick = userSetting ;
   document.getElementById('clear').onclick = dbClear ;
   localStorage.setItem("localHostUrl", document.URL);
-  localStorage.setItem("webUrl","https://preview.c9users.io/devpune1/ydnsampledatabase/sampledb/login.html");
+  localStorage.setItem("webUrl","https://preview.c9users.io/devpune1/ydnsampledatabase/sampledb/index.html");
 
 
   if(navigator.Online){
@@ -8617,10 +8617,10 @@ function createEncryptedObject(encryptedData,userData,userArray){
 
 function goOffline(){
 
+window.location.href = localStorage.getItem("localHostUrl");
 
-
-  document.getElementById('offline').style.display ="none";
-  document.getElementById('online').style.display ="block";
+  //document.getElementById('offline').style.display ="none";
+  //document.getElementById('online').style.display ="block";
 
 
 }
@@ -8630,8 +8630,8 @@ function goOnline(){
   db.close();
 
   window.location.href = localStorage.getItem("webUrl");
-  document.getElementById('online').style.display ="none";
-  document.getElementById('offline').style.display ="block";
+  //document.getElementById('online').style.display ="none";
+  //document.getElementById('offline').style.display ="block";
     //document.getElementById('online').onclick = goOnline ;
 
 

@@ -625,7 +625,7 @@ input[type='checkbox'] {
 	 margin-left:10px;
 	 display:block;
      background: url('images/offline.png') center no-repeat white ;
-		 display: none;
+
 }
 
 #online{
@@ -636,7 +636,7 @@ input[type='checkbox'] {
 	 margin-left:0px;
 	 display:block;
      background: url('images/online.png') center no-repeat white ;
-display: none;
+
 
 }
 
