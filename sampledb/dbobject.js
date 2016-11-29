@@ -202,11 +202,11 @@ Bb});0<=v?(O=h[v],Q=bd(O,Ra),0<=Q?f[Q]=z:(Q=Da(f,function(a){return a.getName()=
 new Nc(e.name,z,W,C,f,void 0,!ka),h.push(f)}}d=new hd(g,h);a(d)}}var f=this,g=(c=c||this.A)&&c.version?parseFloat(c.version):void 0,g=isNaN(g)?void 0:g,h=[];b?b.executeSql("SELECT * FROM sqlite_master",[],e,d):c.readTransaction(function(b){f.O(a,b,c)},function(a){throw a;},e)};
 function Ue(a,b,c,d){function e(b){a.executeSql(b,[],function(){f++;f==g.length&&(c(!0),c=null)},function(a,b){f++;f==g.length&&(c(!1),c=null);throw new Cd(b,'"');})}var f=0,g=We(b),h="Create";if(d){var k=$c(b,d);if(0==k.length){Lb("same table "+b.getName()+" exists.");c(!0);c=null;return}h="Modify";Kb("table: "+b.getName()+" has changed by "+k+" ALTER TABLE cannot run in WebSql, dropping old table.");g.unshift.apply(g,Ve(d))}Lb(h+" table: "+b.getName()+": "+g.join(";"));for(b=0;b<g.length;b++)e(g[b])}
 l.Ja=function(){return!!this.A};l.close=function(){this.A=null};l.Ba=function(a,b,c,d){function e(a){d("abort",a)}function f(){d("complete",{type:"complete"})}function g(b){a(b)}null===this.A&&(a(null),d("abort",this.sa));c==H?this.A.readTransaction(g,e,f):c==Tb?this.A.changeVersion(this.A.version,this.A.version+1+"",g,e,f):this.A.transaction(g,e,f)};
-kc.push(function(a,b){if(da(q.openDatabase)&&(!b||"websql"==b)){var c=new Te,d=new ld,d=c.connect(a,d),e=function(){};d.G(function(){c.Ba(function(a){a.executeSql('SELECT * FROM sqlite_master WHERE type = "table"',[],function(b,c){if(c&&c.rows)for(var d=c.rows.length,e=0,n=0;n<d;n++){var p=c.rows.item(n);"__WebKitDatabaseInfoTable__"!=p.name&&"sqlite_sequence"!=p.name&&(e++,a.executeSql("DROP TABLE "+p.name))}},function(a,b){throw b;})},[],I,e)});d.Ra(function(){})}});Te.prototype.ab=function(){};Yd.prototype.Aa=function(a){return"indexeddb"==a&&J?new Qe(0,this.v):"sqlite"==a&&q.sqlitePlugin?new Te(this.l,"sqlite"):"websql"==a&&da(q.openDatabase)?new Te(this.l):null};Pe.prototype.executeSql=Pe.prototype.executeSql;Oe.prototype.executeSql=Oe.prototype.executeSql;function Xe(a,b,c){Z.call(this,a,b,c)}B(Xe,Pe);ma("ydn.db.Storage",Xe); 
+kc.push(function(a,b){if(da(q.openDatabase)&&(!b||"websql"==b)){var c=new Te,d=new ld,d=c.connect(a,d),e=function(){};d.G(function(){c.Ba(function(a){a.executeSql('SELECT * FROM sqlite_master WHERE type = "table"',[],function(b,c){if(c&&c.rows)for(var d=c.rows.length,e=0,n=0;n<d;n++){var p=c.rows.item(n);"__WebKitDatabaseInfoTable__"!=p.name&&"sqlite_sequence"!=p.name&&(e++,a.executeSql("DROP TABLE "+p.name))}},function(a,b){throw b;})},[],I,e)});d.Ra(function(){})}});Te.prototype.ab=function(){};Yd.prototype.Aa=function(a){return"indexeddb"==a&&J?new Qe(0,this.v):"sqlite"==a&&q.sqlitePlugin?new Te(this.l,"sqlite"):"websql"==a&&da(q.openDatabase)?new Te(this.l):null};Pe.prototype.executeSql=Pe.prototype.executeSql;Oe.prototype.executeSql=Oe.prototype.executeSql;function Xe(a,b,c){Z.call(this,a,b,c)}B(Xe,Pe);ma("ydn.db.Storage",Xe);
 
 //# sourceMappingURL=ydn.db-is-sql.js.map
 return ydn;}, (this || {}));
-            
+
 
 
 
@@ -217,25 +217,25 @@ return ydn;}, (this || {}));
 /*Creating schema for ydn which is used for creating data base and tabe*/
 
 var schemaForUser = {
-    
+
 
 stores: [
 {
-    
-    name : 'setting' 
-  
- 
- 
 
-    
+    name : 'setting'
+
+
+
+
+
 },
 {
-    
+
     name : 'user',
      keyPath : 'date'
- 
 
-    
+
+
 }
 
 
@@ -248,17 +248,17 @@ stores: [
 
 
 var schemaForUserDetail = {
-    
+
 
 stores: [{
-    
+
     name: 'userinfo',    // required. object store name or TABLE name
 
     autoIncrement: true, // if true, key will be automatically created
- 
- 
 
-    
+
+
+
 }
 ]
 
@@ -266,35 +266,34 @@ stores: [{
 };
 
 
-
 function getUserInfoDatabaseObject(){
-    
+
   var   db_name = "User";
-    
-    
-var db = new ydn.db.Storage( db_name,schemaForUserDetail); 
-    
-    
-    
-    
+
+
+var db = new ydn.db.Storage( db_name,schemaForUserDetail,{mechanisms: ['indexedDb']});
+
+
+
+
     return db;
-    
-    
-    
+
+
+
 }
 
 function getUserDatabaseObject(userName){
-    
+
  var   db_name = userName;
-    
-    
-    var db = new ydn.db.Storage(db_name,schemaForUser); 
-    
-    
-    
-    
+
+
+    var db = new ydn.db.Storage(db_name,schemaForUser,{mechanisms: ['indexedDb']});
+
+
+
+
     return db;
-    
-    
-    
+
+
+
 }
