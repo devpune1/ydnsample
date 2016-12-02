@@ -1,23 +1,24 @@
 function loadRemoteStorageData(){
     
+     var userName = sessionStorage.getItem('userinfo') ;
      var db = getUserDatabaseObject(sessionStorage.getItem('databaseName'));
-    
+  
      RemoteStorage.config.changeEvents.window = false;
 
 
-    remoteStorage.access.claim('bicnSy','rw');
+    remoteStorage.access.claim('bicnSystInc','rw');
 
 
     remoteStorage.displayWidget();
 
-    remoteStorage.bicnSy.init();
+    remoteStorage.bicnSystInc.init();
 
-   remoteStorage.bicnSy.getUserData().then(function(userData){
+   remoteStorage.bicnSystInc.getUserData().then(function(userData){
         
         for(var items in userData){
             
           
-              // removeDuplicate(userData[items]);
+              removeDuplicate(userData[items]);
             
             
             
@@ -143,3 +144,26 @@ function loadRemoteStorageData(){
         
         
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

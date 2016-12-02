@@ -1,24 +1,19 @@
 
 <html>
     <head>
-        
+
         <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta class = "view" name="viewport" content="width=device-width, initial-scale=0.5">
-        
+
         <h1 class ="logpage" align="center" > Login Page </h1>
-         <script type="text/javascript" src="../sampledb/crypto.js"></script>
         
            <script src="../sampledb/dbobject.js"></script>
-         <script type="text/javascript" src="../sampledb/ydndbsql.js"></script>
-       
-        <link rel="stylesheet" href="login.css" type="text/css"/>
-          
-          <script type="text/javascript" src="../Crypto/rollups/aes.js"></script>
-       <script type="text/javascript" src="../Crypto/rollups/md5.js"></script>
-        <script type="text/javascript" src="../Crypto/rollups/sha1.js"></script>
+           
         
-  
+
+        <link rel="stylesheet" href="login.css" type="text/css"/>
+
    <script src="../sampledb/jquery.js"></script>
    <script src="../sampledb/jquery-ui.js"></script>
    <script src="../sampledb/jquery-ui.min.js"></script>
@@ -26,106 +21,106 @@
    <script src="../sampledb/laodtooltip.js"></script>
    <script src="../sampledb/tether.min.js"></script>
    <script src="../sampledb/bootstrap.min.js"></script>
-   
-   
+
+
     <script type="text/javascript" src="../sampledb/sjcl.js"></script>
-      
+
    <script type="text/javascript" src="../sampledb/aes.js"></script>
-      
+
    <script type="text/javascript" src="../sampledb/sha256.js"></script>
- 
+
 
    <script type="text/javascript" src="../sampledb/encryption.js"></script>
- 
+
    <script type="text/javascript" src="../sampledb/decryption.js"></script>
-  
-  
-   
+
+
+
       <script type="text/javascript" src="../sampledb/login.js"></script>
-   
-   
-   
+
+
+
    <link rel="stylesheet" href="bootstrap.min.css" type="text/css"/>
    <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
-   
-  
-        
-       
-   
-   
-   
-    </head>
-   
-      <meta name="viewport" content="width=device-width, initial-scale=0.5">
-        
-   
-    
-    <body>
-        
-    
-   
 
-            
+
+
+
+
+
+
+    </head>
+
+      <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+
+
+    <body>
+
+
+
+
+
             <div class="loginpage"  >
-                
-          
+
+
                 <input  type="text"  class = "loginformdiv blinking-cursor form-control focusedInput"  name="loginformdiv" id="InputName" placeholder="Enter User ID" autofocus />
-                        
-                        
+
+
                 <input type="password"  class="loginformdiv blinking-cursor form-control focusedInput"  name="loginformdiv" id="InputPassword" placeholder="Enter User Password" />
-                       
-                   
-                   
+
+
+
                 <input  type="button"  id = "login" type="button" class="btn btn-default" onClick = "register(this)" ></input>
-            
-         
-          
-          
+
+
+
+
                   <input type="button" id="signup" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="register(this)">   </input>
 
-           
+
      </div>
 
- 
-  
-        
-  
-     
-        
+
+
+
+
+
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  
+
      <div class="modal-dialog modal-lg">
 
 
      <div class="modal-content">
-         
+
                   <div class="modal-header">
-          
+
                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  ><span aria-hidden="true">&times;</span></button>
                           <h4 class="modal-title" id="myModalLabel">Registration Page</h4>
-   
+
                          </div>
-      
+
       <div class="modal-body">
-        
+
       <form class = "form-horizontal" role="form"  autocomplete="off" onsubmit="return false">
-            
+
             <div class="col-lg-6">
-                
-                
+
+
                 <div align="center" class="form-group">
-                   
+
                     <label for="InputName">FullName</label>
-                    
+
                     <div class="input-group input-group-lg">
-                        
+
                         <input type="text" class="form-control input-group-lg" name="InputName" id="fullname" placeholder="User Name should contain string only with more than 5 chararacter" pattern = "^([a-zA-Z]*((\s)))+[a-zA-Z]*$" title="Please enter string only" required>
-                         
+
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        
+
                     </div>
                 </div>
-                
+
                 <div align="center" class="form-group">
                     <label for="InputEmail">UserID</label>
                      <div class="input-group input-group-lg">
@@ -133,36 +128,36 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
-                
-                
+
+
                 <div align="center" class="form-group">
-                    
+
                     <label for="InputName">MobileNumber</label>
-                    
+
                     <div class="input-group input-group-lg">
-                        
+
                         <input type="text" class="form-control input-group-lg" name="InputName" id="mobileno" placeholder="Mobile Number should be 10-Digit only " pattern="^[978]\d{9}$" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                   
+
                     </div>
-               
+
                 </div>
-               
-               
+
+
                  <div align="center"  class="form-group">
-                     
+
                     <label for="InputEmail">Email</label>
-                   
+
                     <div class="input-group input-group-lg input-prepend">
-                        
+
                         <input type="email" class="form-control input-group-lg" id="email" name="InputName" placeholder="Email Address must contain be eg:xyz@abc.com"  required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                     </div>
-                
+
                </div>
-               
-               
-               
+
+
+
                  <div align="center" class="form-group">
                     <label for="InputEmail">BirthDate</label>
                     <div class="input-group input-group-lg" >
@@ -171,7 +166,7 @@
                   <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                 </div>
-                
+
                   <div  align="center" class="form-group">
                     <label for="InputEmail">Password </label>
                     <div class="input-group input-group-lg">
@@ -179,7 +174,7 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
-               
+
                  <div align="center" class="form-group">
                     <label for="InputEmail">ConfirmationPassword</label>
                     <div class="input-group input-group-lg">
@@ -187,36 +182,36 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
-               
-               
-               
+
+
+
               </div>
-              
-         
+
+
        </div>
-        
-      
-      
+
+
+
        <div class="modal-footer">
-          
+
        <input   type = "submit" name="submit" id="save" value="Submit"  onclick="signUp()" class="btn default btn-info pull-right"></input>
        <input type="button" name="close" id="exit"  value="Close"  onclick="getClear()" class="btn btn-default" />
       </div>
-    
+
      </form>
-    
+
     </div>
 
   </div>
-  
+
 </div>
 
 
 <div id="registerform">
     <div >
-       
+
     </div>
 
 </body>
-    
+
 </html>

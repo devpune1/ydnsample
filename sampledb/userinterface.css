@@ -1,79 +1,94 @@
-@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px) {
-  /* Force table to not be like tables anymore */
-  thead, tbody, th, td, tr {
-   
-   
-    margin-left:-70px;
 
-    display: block;
-  }
-  
-  table {
-   
-   
-    width: 5pc;
-      margin-left: 10px;
-    overflow: auto;
-    display: block;
-  }
-  
-  /* Hide table headers (but not display: none;, for accessibility) */
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-  tr {
-     
-    border: 1px solid #ccc;
-  }
-  #example td {
-    /* Behave  like a "row" */
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-    
-  }
-  td : before {
-    /* Now like a table header */
-    position: relative;
-    /* Top/left values mimic padding */
-    top: 15px;
-    left:6px;
-    width: 45px;
-    
-   
-  }
- 
-  td:nth-of-type(1):before {
-    content: "Name : ";
-  }
-  td:nth-of-type(2):before {
-    content: "Password : ";
-  }
-  td:nth-of-type(3):before {
-    content: "Website : ";
-  }
-   td:nth-of-type(4):before {
-    content: "Hint : ";
-  }
-  td:nth-of-type(5):before {
-    content: "Date : ";
-  }
 
-       td:nth-of-type(6):before {
-    content: "Action : ";
-  }
-    
+
+
+
+
+
+@media only screen and (max-width: 1020px),(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+
+
+#deletebutton{
       
+      width: 30px;
+      height:30px;
+       background-Image: url('images/remove.png') ;
+      	background-size: 30px 30px;
   }
-
+   #editbutton{
+      
+    width: 30px;
+      height:30px;
+        background-Image: url('images/edit.png') ;
+      	background-size: 30px 30px;
+  }
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+	display : block;
+		top: -9999px;
+		left: -500px;
+	}
+	
+	tr {	display :block;
+		top: -9999px;
+		left: 500px; border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/	
+	td:nth-of-type(1):before { content: "No"; }
+	td:nth-of-type(2):before { content: "Name"; }
+	td:nth-of-type(3):before { content: "Password"; }
+	td:nth-of-type(4):before { content: "Website"; }
+	td:nth-of-type(5):before { content: "Hint"; }
+	td:nth-of-type(6):before { content: "Date"; }
+	td:nth-of-type(7):before { content: "Action"; }
+}
 
 
 
 
 @media  screen and (max-width:500px){
+  #deletebutton{
+      
+      width: 30px;
+      height:30px;
+       background-Image: url('images/remove.png') ;
+      	background-size: 30px 30px;
+  }
+   #editbutton{
+      
+    width: 30px;
+      height:30px;
+        background-Image: url('images/edit.png') ;
+      	background-size: 30px 30px;
+  }
+    
   /* Force table to not be like tables anymore */
   thead, tbody, th, td, tr {
    
@@ -120,50 +135,422 @@
    
   }
  
-  td:nth-of-type(1):before {
-    content: "Name : ";
-  }
-  td:nth-of-type(2):before {
-    content: "Password : ";
-  }
-  td:nth-of-type(3):before {
-    content: "Website : ";
-  }
-   td:nth-of-type(4):before {
-    content: "Hint : ";
-  }
-  td:nth-of-type(5):before {
-    content: "Date : ";
-  }
-
-       td:nth-of-type(6):before {
-    content: "Action : ";
-  }
+  	td:nth-of-type(1):before { content: "No :"; }
+	td:nth-of-type(2):before { content: "Name :"; }
+	td:nth-of-type(3):before { content: "Password :"  ; }
+	td:nth-of-type(4):before { content: "Website : " ; }
+	td:nth-of-type(5):before { content: "Hint :"; }
+	td:nth-of-type(6):before { content: "Date :"; }
+	td:nth-of-type(7):before { content: "Action :"; }
     
       
   }
 
 /* Smartphones (portrait and landscape) ----------- */
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) {
+
+ 
   body {
     padding: 0;
     margin: 0;
     width: 320px;
   }
+ #deletebutton{
+      
+      width: 30px;
+      height:30px;
+       background-Image: url('images/remove.png') ;
+      	background-size: 30px 30px;
+  }
+   #editbutton{
+      
+    width: 30px;
+      height:30px;
+        background-Image: url('images/edit.png') ;
+      	background-size: 30px 30px;
+  }
+   thead, tbody, th, td, tr {
+
+    margin-left: 5px;
+
+    display: block;
+  }
+  
+  table {
+   
+   
+      width: 50pc;
+      margin-left: 30px;
+      overflow: auto;
+      display: block;
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+      display: none;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+  }
+  tr {
+     
+    border: 1px solid #ccc;
+  }
+  #example td {
+  
+    border: none;
+    border-bottom: 1px solid #eee;
+
+     padding:0%;
+  }
+  td : before {
+    
+    
+    top: 15px;
+    left:0px;
+   
+   padding:0%;
+   
+  }
+ 
+    td:nth-of-type(1):before { content: "No :"; }
+	td:nth-of-type(2):before { content: "Name :"; }
+	td:nth-of-type(3):before { content: "Password :"  ; }
+	td:nth-of-type(4):before { content: "Website : " ; }
+	td:nth-of-type(5):before { content: "Hint :"; }
+	td:nth-of-type(6):before { content: "Date :"; }
+	td:nth-of-type(7):before { content: "Action :"; }
+    
+      
 }
 
 
-/* iPads (portrait and landscape) ----------- */
+/*
+@media only screen and (min-width:200px) and (max-width: 320px) {
+ 
+  body {
+    padding: 0;
+    margin: 0;
+    width: 200px;
+  }
+ #deletebutton{
+      
+      width: 30px;
+      height:30px;
+       background-Image: url('images/remove.png') ;
+      	background-size: 30px 30px;
+  }
+   #editbutton{
+      
+    width: 30px;
+      height:30px;
+        background-Image: url('images/edit.png') ;
+      	background-size: 30px 30px;
+  }
+    #example thead, tbody, th, td, tr {
+
+display:block;
+    
+
+  }
+  
+table {
+  
+       display: block;
+      margin-right:70px;
+
+  
+  }
+  
+      
+  
+  
+ 
+   #example thead tr {
+      display: block;
+   
+  
+		top: 50px;
+		left: 50%;
+   
+  }
+   #example tr {
+     
+   
+  }
+  #example td {
+   width :200px;
+ top: 55px;
+   left:55px;
+     padding: 20%; 
+  border: 1px solid #ccc; 
+  text-align: left;   
+
+     
+  }
+  td : before {
+    
+    width :200px;
+    top: 55px;
+   left:55px;
+     padding: 20%; 
+  border: 1px solid #ccc; 
+  text-align: center; 
+  
+   
+  }
+ 
+    td:nth-of-type(1):before { content: "No :"; }
+	td:nth-of-type(2):before { content: "Name :"; }
+	td:nth-of-type(3):before { content: "Password :"  ; }
+	td:nth-of-type(4):before { content: "Website : " ; }
+	td:nth-of-type(5):before { content: "Hint :"; }
+	td:nth-of-type(6):before { content: "Date :"; }
+	td:nth-of-type(7):before { content: "Action :"; }
+    
+      
+}
+*/
+
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   body {
     width: 495px;
   }
+  #deletebutton{
+      
+      width: 30px;
+      height:30px;
+       background-Image: url('images/remove.png') ;
+      	background-size: 30px 30px;
+  }
+   #editbutton{
+      
+    width: 30px;
+      height:30px;
+        background-Image: url('images/edit.png') ;
+      	background-size: 30px 30px;
+  }
+  #userdetail{
+   
+    background-color: white;
+    border: 5px solid black;
+    width:610px;
+    height:500px;
+    
+      margin-top:0px;
+    margin-left:300px; 
+ 
+    margin-bottom:50px;
+   
+    font-size: 25px ;
+	   font-style: normal;
+	   font-variant: normal;
+	   font-weight: 500;
+    display : block;
+ } 
+ 
+ 
+  
+      #userform{
+    
+    width:510px;
+    height:400px;
+    background-color: lightblue;
+    margin-left:50px;
+    margin-right:50px;
+    margin-top:40px;
+    font-family: Arial;
+    font-size: 25px ;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+}
+   
+   
+   ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px;
+    text-decoration: none;
+}
+   
+   
+  
 }
 
 
 
+@media only screen  and (min-width:200px) and (max-width:300px)  {
+   
+
+
+
+
+
+
+   #usericon{
+      
+      width:70px;
+      height:60px;
+      background: url('images/usericon.png') center no-repeat white;  
+    background-repeat: no-repeat;
+  
+   padding-right: 10px;
+   text-indent: 0.01px;
+   display:block;
+   margin-left:200px;
+    
+      
+   }
+   
+   #userrightname{
+       
+       
+       position:relative;
+       
+        margin-left:150px;
+        font-size: 15px;
+       
+   }
+   
+   
+
+#right{
+    
+     width:25pc;
+    height:9pc;
+
+    
+}
+
+
+
+
+
+#userdetail{
+    
+   
+    width:220px;
+    height:500px;
+     margin-left:70px;
+      margin-top:50px;
+     
+}
+
+#userform{
+    
+    
+    width:200px;
+    height:450px;
+    margin-left:11px;
+     margin-top:20px;
+}
+
+
+
+
+#username{
+    
+ 
+    
+    width:150px;
+     margin-left:20px;
+     
+}
+
+#userpassword{
+    
+ 
+    
+    width:150px;
+     margin-left:20px;
+     
+}
+
+#userwebsite{
+    
+ 
+    
+    width:150px;
+     margin-left:20px;
+     
+}
+
+#userhint{
+    
+ 
+    
+    width:150px;
+     margin-left:20px;
+     
+}
+
+
+
+
+#add{
+    
+width:50px;
+height:50px;
+
+}
+    
+#get{
+    
+    width:50px;
+height:50px;
+margin-left:70px;
+    
+}   
+
+#getall{
+  
+    
+    width:50px;
+    height:50px;
+    margin-left:130px; 
+    
+}
+
+
+
+#clear{
+    
+    
+width:50px;
+height:50px;
+margin-top:10px;
+margin-left:10px; 
+
+   
+}
+#setting{
+    
+    
+width:50px;
+height:50px;
+
+margin-left:70px; 
+
+   
+}
+
+
+
+
+
+
+.rightdiv{
+    
+    
+    width:50px;
+    height:50px;
+}
+    
+}
 
 
 
@@ -348,8 +735,7 @@ margin-left:70px;
 }
 
 
-@media only screen  and (min-width:400px) and (max-width:450px)  
-{
+@media only screen  and (min-width:400px) and (max-width:450px)  {
    
 
 #usericon{
@@ -511,8 +897,7 @@ margin-left:70px;
 }
     
 }
-@media only screen  and (min-width:450px) and (max-width:500px)  
-{
+@media only screen  and (min-width:450px) and (max-width:500px)  {
    
 #usericon{
       
@@ -676,8 +1061,7 @@ margin-left:140px;
 }
     
 }
-@media only screen  and (min-width:500px) and (max-width:550px)  
-{
+@media only screen  and (min-width:500px) and (max-width:550px)  {
    
 #usericon{
       
@@ -840,8 +1224,7 @@ margin-left:140px;
 }
     
 }
-@media only screen  and (min-width:550px) and (max-width:600px)  
-{
+@media only screen  and (min-width:550px) and (max-width:600px)  {
    
 
 
@@ -1007,8 +1390,7 @@ margin-left:140px;
     
 }
 
-@media only screen  and (min-width:600px) and (max-width:650px)  
-{
+@media only screen  and (min-width:600px) and (max-width:650px)  {
    
    
 #usericon{
@@ -1175,8 +1557,7 @@ margin-left:140px;
     
 }
 
-@media only screen  and (min-width:650px) and (max-width:750px)  
-{
+@media only screen  and (min-width:650px) and (max-width:750px) {
    
   
 #usericon{
@@ -1343,8 +1724,7 @@ margin-left:140px;
 }
 
 
-@media only screen  and (min-width:750px) and (max-width:800px)  
-{
+@media only screen  and (min-width:750px) and (max-width:800px)  {
    
   
 #usericon{
@@ -1510,8 +1890,7 @@ margin-left:140px;
     
 }
 
-@media only screen  and (min-width:800px) and (max-width:900px)  
-{
+@media only screen  and (min-width:800px) and (max-width:900px)  {
    
 
   
@@ -1842,8 +2221,7 @@ height:50px;
 }
     
 }
-@media only screen  and (min-width:1000px) and (max-width:1200px)  
-{
+@media only screen  and (min-width:1000px) and (max-width:1200px)  {
    
 
   
