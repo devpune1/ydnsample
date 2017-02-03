@@ -1,0 +1,266 @@
+
+    <!doctype html>
+<html>
+    <title>USER FORM</title>
+  <head>
+
+    <meta charset="utf-8">
+
+      <script  src="remotestorage.js"></script>
+    <script src="../sampledb/jquery.js"></script>
+    <script src="../sampledb/jquery-ui.js"></script>
+    <script src="../sampledb/jquery-ui.min.js"></script>
+    <script src="../sampledb/jquery.simplePagination.js"></script>
+
+
+  <script src="../sampledb/bootstrap.min.js"></script>
+
+   <script type="text/javascript" src="../sampledb/ydn.db-is-core-e-cur-dev.js"></script>
+
+
+      <script type="text/javascript" src="../sampledb/jsc/ydn.db-dev.js"></script>
+   <script type="text/javascript" src="../sampledb/ydn.db-is-sql.js"></script>
+   <script type="text/javascript" src="../sampledb/jsc/ydn.db-dev.js"></script>
+
+    <script type="text/javascript" src="../sampledb/jquery.tablesorter.js"></script>
+
+
+ <script type="text/javascript" src="../sampledb/jquery.dataTables.min.js"></script>
+
+
+   <link rel="stylesheet" type="text/css" href="jquery.dataTables.min.css">
+   <link rel="stylesheet" type="text/css" href="dataTables.jqueryui.css">
+
+ <script type="text/javascript" src="../sampledb/sjcl.js"></script>
+
+   <script type="text/javascript" src="../sampledb/aes.js"></script>
+
+   <script type="text/javascript" src="../sampledb/sha256.js"></script>
+
+
+ <script type="text/javascript" src="../sampledb/encryption.js"></script>
+  <script type="text/javascript" src="../sampledb/decryption.js"></script>
+
+ <script src="../sampledb/dbobject.js"></script>
+  <script src="../sampledb/generateKey.js"></script>
+
+
+  <script src="../sampledb/remoteStorage/remotestorage.js"></script>
+	<script src="../sampledb/remoteStorage/remotestorage-module.js"></script>
+  	<script src="../sampledb/remoteStorage/remoteStorageInitilize.js"></script>
+
+
+
+   <script type="text/javascript" src="../sampledb/datafolder.js"></script>
+
+
+
+  <!--   <script type="text/javascript" src="sampleobject.js"></script> -->
+
+
+
+  <link rel="stylesheet" href="bootstrap.min.css" type="text/css"/>
+   <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="enct.css">
+   <link rel="stylesheet" type="text/css" href="jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="userinterface.css">
+
+
+   <link rel="stylesheet" type="text/css" href="responsive.dataTables.min.css">
+
+
+  </head>
+
+
+  <body onload= "checkRefresh()">
+
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <form >
+
+
+        <div  class="dropup" id = "right"></div>
+        <div id="connection">
+           <input type="button" id="offline" ></input>
+
+           <input type="button" id="online" ></input>
+       </div>
+
+
+         <div id="userdetail" >
+
+          <div id="userform">
+
+
+     <input type = "text" id = "username" placeholder = "Enter  Name" ></input>
+
+     <input type = "text" id = "userpassword" placeholder = "Enter Password" ></input>
+
+     <input type = "text"  id = "userwebsite" placeholder = "Enter Website Name" ></input>
+
+     <input type = "text" id = "userhint" placeholder = "Enter Hint" ></input>
+
+
+     <input type="button"  id="add" /></input>
+
+     <input type="button"  id="get" /></input>
+
+
+      <input type="button" id="getall"/></input>
+
+     <input type="button" id="clear"  ></input>
+
+     <input type="button" id="setting"  ></input>
+
+
+    </div>
+
+
+</div>
+
+<div>
+
+  <h1> <font size="20"> Results : <div id="matchresult"> <div></font> </h1>
+
+         <div id="listing"></div>
+
+    </div>
+
+ <div id="demo"></div>
+
+
+ <div class="table-responsive">
+
+
+
+<table id="example" class= "table table-inverse " width="100%">
+    <tbody id="tbodyid">
+    <thead>
+            <tr>
+
+            </tr>
+        </thead>
+
+        </tbody>
+
+
+
+               </table>
+
+
+</div>
+
+
+
+
+
+     <div id="usertable"  class="table-responsive" >  </div>
+
+
+
+    <div id="editwindow" >
+
+    <div id="editdiv"  >
+
+
+       </div>
+    </div>
+    </div>
+
+
+
+<div id="searchwindow">
+
+    <div id="searchdiv">
+
+
+
+    </div>
+    </div>
+
+  
+
+        </form>
+        
+   
+   
+   
+   
+   <div id="myEditModal"  class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+       
+       
+    <div>
+
+   <label>User Id :</label>
+
+
+
+<input type="text" name="InputName" class=" input-large" id="userids"   required>
+
+                     
+    </div>
+      <div>
+
+   <label>User Password :</label>
+
+
+
+                        <input type="text" name="InputName" class=" input-large" id="userpassword"   required>
+
+                     
+    </div>
+      <div>
+
+   <label>User Website:</label>
+
+
+
+                        <input type="text" name="InputName" class=" input-large" id="userwebsite"   required>
+
+                     
+    </div>
+      <div>
+
+   <label>User Hint :</label>
+
+
+
+                        <input type="text" name="InputName" class=" input-large" id="userhint"   required>
+
+                     
+    </div>
+   
+
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+   
+   
+   
+
+
+  </body>
+   <script type="text/javascript" src="enct.js"></script>
+
+
+</html>
