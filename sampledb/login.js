@@ -47,7 +47,7 @@ stores: [{
 
 
 
-
+// get data
 function getTextBoxData(windowId){
 
  var userData = [];
@@ -141,7 +141,7 @@ clearInput('InputName');
           case 'remotelogin':
 
 
-           
+
 
 
 
@@ -467,15 +467,15 @@ function signUp(){
                  userDataObject = getUserDataInObject(userTextBoxId,userData,getEncryptedKey);
 
                 userDataObject["key"] = key;
-                
-                
+
+
                 // Store registration details to remote storage.
-                
+
                  storeRegistrationDetails(userDataObject,userData[1])
-                
+
                  storedUserRecords(userDataObject);
-                 
-                 
+
+
 
                   // regPopupWindow.style.display = "none";
 
@@ -507,18 +507,18 @@ function remoteSubmit(){
 var userData = getTextBoxData('remoteInputName');
 
 if(userData[1] && userData[0]){
-    
+
     console.log(userData[1])
 
-       
-         
+
+
          remoteStorage.widget.view.form.userAddress.value = userData[1];
 
-     
+
 	     remoteStorage.widget.view.events.connect(new Event(""));
-	 
+
 	       sessionStorage.setItem('databaseName',userData[0]);
-	    
+
          accessRemotestorageData(userData[0]);
           $('#myRemoteModal').modal('hide');
 
@@ -695,14 +695,14 @@ function storedUserRecords(userDataObject){
   //db =  getUserInfoDatabaseObject(sessionStorage.getItem('databaseName'));
 
     try {
-        
-        
+
+
     db.put('userinfo',userDataObject).done(function(){
 
        alert("Record Entered ");
     });
-    
-    
+
+
     }
     catch(e){
         console.log( e.message +""+e.name);
@@ -1364,7 +1364,7 @@ db.executeSql('Select * from userinfo').then(function(records){
 
 
 if(records.length){
-    
+
 
   for(items = 0 ; items < records.length ; items++){
 
@@ -1414,9 +1414,9 @@ if(records.length){
 
 }
 else{
-    
+
     alert("Click To Remote Login Button To Access Your Credentials");
-    
+
      $('#myRemoteModal').modal('show');
 }
 
@@ -1585,14 +1585,14 @@ function disconnectRemoteModal(){
    if(remoteStorage.connected){
 
       remoteStorage.disconnect();
-      
+
      $('#myRemoteModal').modal('hide');
 
-       
+
    }
    else{
-       
-       
+
+
         $('#myRemoteModal').modal('hide');
    }
 
@@ -1712,13 +1712,13 @@ function setHashKey(){
 
 
 (function(){
-    
-    
-        
-      setTimeout(function(){loadRemoteStorageRecords()},3000) 
-        
+
+
+
+      setTimeout(function(){loadRemoteStorageRecords()},3000)
+
 
     document.getElementById('remoteconnect').onclick = remoteSubmit;
      document.getElementById('remotedisconnect').onclick = disconnectRemoteModal;
-    
+
 })()
